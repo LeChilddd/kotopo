@@ -1,5 +1,4 @@
-version: '3.8'
-
+version: "3.8"
 
 networks:
   mariadb_bridge:
@@ -11,7 +10,6 @@ volumes:
   db_data:
 
 services:
-
   traefik:
     image: traefik:latest
     container_name: traefik
@@ -32,7 +30,6 @@ services:
       traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN}`)
       traefik.http.routers.traefik.service: api@internal
       traefik.docker.network: traefik_bridge
-
 
   database:
     image: mariadb:10.8.3
@@ -71,7 +68,7 @@ services:
       - traefik_bridge
       - mariadb_bridge
     labels:
-      traefik.enable: 'true'
+      traefik.enable: "true"
       traefik.docker.network: traefik_bridge
       traefik.http.routers.kotopo.entrypoints: web
       traefik.http.routers.kotopo.rule: Host(`${DOMAIN}`)
@@ -80,7 +77,7 @@ services:
     image: node:18
     restart: unless-stopped
     working_dir: /var/www/kotopo
-    user: '1000'
+    user: "1000"
     command: /bin/sh -c "yarn install && yarn build && yarn run dev-server"
     env_file: .env
     environment:
@@ -111,4 +108,3 @@ services:
       traefik.http.routers.myadmin.rule: Host(`myadmin.${DOMAIN}`)
       traefik.http.services.myadmin.loadbalancer.server.port: 80
       traefik.docker.network: traefik_bridge
-
