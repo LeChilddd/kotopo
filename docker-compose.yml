@@ -1,44 +1,31 @@
-version : "3.8"
+version: '3.8'
+
 services:
-  db:
-    image: mysql
-    container_name: db_kotopo
-    restart: always
-    volumes:
-      - db-data:/var/lib/mysql
+  database:
+    container_name: database
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-    networks:
-      - dev
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: symfony_docker
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - '4306:3306'
+    volumes:
+      - ./mysql:/var/lib/mysql
 
-  phpmyadmin:
-    image: phpmyadmin
-    container_name: myadmin_kotopo
-    restart: always
+  php:
+    container_name: php
+    build:
+      context: ./docker/
+      args:
+        USER_ID: ${USER_ID}
+        GROUP_ID: ${GROUP_ID}
+    ports:
+      - '8080:80'
+    volumes:
+      - ./app:/var/www/kotopo
+      - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
-      - db
-    ports:
-      - 8080:80
-    environment:
-      PMA_HOST : db
-    networks:
-      - dev
-
-  app:
-    build: php
-    container_name: app_kotopo
-    ports:
-      - "8741:80"
-    volumes:
-      - ./php/vhosts:/etc/apache2/sites-enabled
-      - ./:/var/www
-    restart: always
-    networks:
-      - dev
-
-
-networks:
-  dev:
-
-volumes:
-  db-data:
+      - database
