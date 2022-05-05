@@ -1,19 +1,28 @@
 version: '3.8'
 
+
+networks:
+  app_bridge:
+    name: app_bridge
+
+volumes:
+  db_data:
+
 services:
   database:
-    container_name: database
-    image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
+    image: mariadb:latest
+    container_name: mariaDB
+    restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: symfony_docker
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: symfony
+      MYSQL_ROOT_PASSWORD: root
     ports:
-      - '4306:3306'
+      - 3306:3306
     volumes:
-      - ./mysql:/var/lib/mysql
+      - db_data:/var/lib/mysql
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - app_bridge
 
   php:
     container_name: php
@@ -29,3 +38,17 @@ services:
       - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
+    networks:
+      - app_bridge
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - '8083:80'
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - app_bridge
+

@@ -1,12 +1,10 @@
-FROM php:8.1-apache
+FROM php:8.1.5-apache
 
 
 USER root
 
-ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions zip
+RUN apt-get update -y && apt-get install -y libmariadb-dev
+RUN docker-php-ext-install zip mysqli
 
 WORKDIR /var/www/kotopo
 
