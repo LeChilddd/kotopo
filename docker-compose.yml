@@ -2,13 +2,38 @@ version: '3.8'
 
 
 networks:
-  app_bridge:
-    name: app_bridge
+  mariadb_bridge:
+    name: mariadb_bridge
+  traefik_bridge:
+    name: traefik_bridge
 
 volumes:
   db_data:
 
 services:
+
+  traefik:
+    image: traefik:latest
+    container_name: traefik
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+    networks:
+      - traefik_bridge
+    labels:
+      traefik.enable: true
+      traefik.http.routers.traefik.entrypoints: web
+      traefik.http.routers.traefik.rule: Host(`traefik.docker.localhost`)
+      traefik.http.routers.traefik.service: api@internal
+      traefik.docker.network: traefik_bridge
+
+
   database:
     image: mariadb:latest
     container_name: mariaDB
@@ -22,7 +47,7 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - app_bridge
+      - mariadb_bridge
 
   php:
     container_name: php
@@ -31,24 +56,32 @@ services:
       args:
         USER_ID: ${USER_ID}
         GROUP_ID: ${GROUP_ID}
-    ports:
-      - '8080:80'
     volumes:
       - ./app:/var/www/kotopo
       - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
     networks:
-      - app_bridge
+      - traefik_bridge
+    labels:
+      traefik.enable: 'true'
+      traefik.docker.network: traefik_bridge
+      traefik.http.routers.kotopo.entrypoints: web
+      traefik.http.routers.kotopo.rule: Host(`kotopo.localhost`)
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     restart: unless-stopped
-    ports:
-      - '8083:80'
     environment:
       - PMA_ARBITRARY=1
     networks:
-      - app_bridge
+      - traefik_bridge
+      - mariadb_bridge
+    labels:
+      traefik.enable: true
+      traefik.http.routers.myadmin.entrypoints: web
+      traefik.http.routers.myadmin.rule: Host(`myadmin.kotopo.localhost`)
+      traefik.http.services.myadmin.loadbalancer.server.port: 80
+      traefik.docker.network: traefik_bridge
 
