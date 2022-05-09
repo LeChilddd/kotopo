@@ -19,17 +19,3 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 RUN apt update && apt install -yqq nodejs npm zip unzip
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
-
-ARG USER_ID
-ARG GROUP_ID
-
-RUN groupadd -f -g $GROUP_ID user
-RUN useradd -u $USER_ID -g $GROUP_ID user
-
-RUN chmod 775 -R /var/www
-RUN chown -R $USER_ID:$GROUP_ID /var/www/
-
-USER user
-
-RUN composer install
-

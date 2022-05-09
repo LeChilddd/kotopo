@@ -53,9 +53,6 @@ services:
     container_name: php
     build:
       context: ./docker/
-      args:
-        USER_ID: ${USER_ID}
-        GROUP_ID: ${GROUP_ID}
     volumes:
       - ./app:/var/www/kotopo
       - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
@@ -74,7 +71,8 @@ services:
     container_name: phpmyadmin
     restart: unless-stopped
     environment:
-      - PMA_ARBITRARY=1
+      PMA_ARBITRARY: 1
+      PMA_HOST: database
     networks:
       - traefik_bridge
       - mariadb_bridge
