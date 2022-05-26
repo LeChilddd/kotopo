@@ -52,15 +52,16 @@ services:
   php:
     container_name: php
     build:
-      context: ./docker/
+      context: ./docker/php-apache
+      target: php
     restart: unless-stopped
     environment:
       - DOMAIN=${DOMAIN}
       - BASE_URL=http://${DOMAIN}
       - DATABASE_URL=mysql://root:root@db:3306/kotopo?serverVersion=mariadb-10.7.3
     volumes:
-      - ./app:/var/www/kotopo
-      - ./docker/apache.conf:/etc/apache2/sites-available/000-default.conf
+      - ./app:/srv/app
+      - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
     networks:
@@ -70,6 +71,36 @@ services:
       traefik.docker.network: traefik_bridge
       traefik.http.routers.kotopo.entrypoints: web
       traefik.http.routers.kotopo.rule: Host(`${DOMAIN}`)
+
+  watch:
+    image: node:18
+    restart: unless-stopped
+    working_dir: /srv/app
+    user: '1000'
+    command: /bin/sh -c "yarn install && yarn build && yarn run dev-server"
+    env_file: .env
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - NODE_ENV=development
+      - BASE_URL=http://${DOMAIN}
+    volumes:
+      - ./app:/srv/app
+    expose:
+      - 3000
+    ports:
+      - 4508:4508
+
+  caddy:
+    container_name: caddy
+    build:
+      context: ./docker/caddy
+      target: caddy
+    restart: unless-stopped
+    volumes:
+      - ./caddy/caddy_data:/data
+      - ./caddy/caddy_config:/config
+
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
