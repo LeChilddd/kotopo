@@ -60,7 +60,7 @@ services:
       - BASE_URL=http://${DOMAIN}
       - DATABASE_URL=mysql://root:root@db:3306/kotopo?serverVersion=mariadb-10.7.3
     volumes:
-      - ./app:/srv/app
+      - ./app:/var/www/kotopo
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf
     depends_on:
       - database
@@ -75,7 +75,7 @@ services:
   watch:
     image: node:18
     restart: unless-stopped
-    working_dir: /srv/app
+    working_dir: /var/www/kotopo
     user: '1000'
     command: /bin/sh -c "yarn install && yarn build && yarn run dev-server"
     env_file: .env
@@ -90,17 +90,6 @@ services:
       - 3000
     ports:
       - 4508:4508
-
-  caddy:
-    container_name: caddy
-    build:
-      context: ./docker/caddy
-      target: caddy
-    restart: unless-stopped
-    volumes:
-      - ./caddy/caddy_data:/data
-      - ./caddy/caddy_config:/config
-
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin

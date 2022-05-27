@@ -5,7 +5,7 @@ USER root
 RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev
 RUN docker-php-ext-install zip mysqli
 
-WORKDIR /srv/app/
+WORKDIR /var/www/kotopo
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
