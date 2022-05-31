@@ -85,7 +85,7 @@ services:
       - NODE_ENV=development
       - BASE_URL=http://${DOMAIN}
     volumes:
-      - ./app:/srv/app
+      - ./app:/var/www/kotopo
     expose:
       - 3000
     ports:
