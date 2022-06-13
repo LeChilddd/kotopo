@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -47,29 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private $expired_at;
 
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: UserLanguageLevel::class, orphanRemoval: true)]
-    private $userLanguageLevels;
-
-    #[ORM\OneToMany(mappedBy: 'user_teacher_id', targetEntity: Session::class, orphanRemoval: true)]
-    private $sessions;
-
-    #[ORM\ManyToOne(targetEntity: Invoice::class, inversedBy: 'user_id')]
+    #[ORM\OneToOne(targetEntity: Membership::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private $invoice;
-
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: Membership::class, orphanRemoval: true)]
-    private $memberships;
-
-    #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: UserSession::class, orphanRemoval: true)]
-    private $userSessions;
-
-    public function __construct()
-    {
-        $this->userLanguageLevels = new ArrayCollection();
-        $this->sessions = new ArrayCollection();
-        $this->memberships = new ArrayCollection();
-        $this->userSessions = new ArrayCollection();
-    }
+    private $membership;
 
     public function getId(): ?int
     {
@@ -225,134 +203,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, UserLanguageLevel>
-     */
-    public function getUserLanguageLevels(): Collection
+    public function getMembership(): ?Membership
     {
-        return $this->userLanguageLevels;
+        return $this->membership;
     }
 
-    public function addUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
+    public function setMembership(Membership $membership): self
     {
-        if (!$this->userLanguageLevels->contains($userLanguageLevel)) {
-            $this->userLanguageLevels[] = $userLanguageLevel;
-            $userLanguageLevel->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
-    {
-        if ($this->userLanguageLevels->removeElement($userLanguageLevel)) {
-            // set the owning side to null (unless already changed)
-            if ($userLanguageLevel->getUserId() === $this) {
-                $userLanguageLevel->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Session>
-     */
-    public function getSessions(): Collection
-    {
-        return $this->sessions;
-    }
-
-    public function addSession(Session $session): self
-    {
-        if (!$this->sessions->contains($session)) {
-            $this->sessions[] = $session;
-            $session->setUserTeacherId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSession(Session $session): self
-    {
-        if ($this->sessions->removeElement($session)) {
-            // set the owning side to null (unless already changed)
-            if ($session->getUserTeacherId() === $this) {
-                $session->setUserTeacherId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getInvoice(): ?Invoice
-    {
-        return $this->invoice;
-    }
-
-    public function setInvoice(?Invoice $invoice): self
-    {
-        $this->invoice = $invoice;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Membership>
-     */
-    public function getMemberships(): Collection
-    {
-        return $this->memberships;
-    }
-
-    public function addMembership(Membership $membership): self
-    {
-        if (!$this->memberships->contains($membership)) {
-            $this->memberships[] = $membership;
-            $membership->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMembership(Membership $membership): self
-    {
-        if ($this->memberships->removeElement($membership)) {
-            // set the owning side to null (unless already changed)
-            if ($membership->getUserId() === $this) {
-                $membership->setUserId(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserSession>
-     */
-    public function getUserSessions(): Collection
-    {
-        return $this->userSessions;
-    }
-
-    public function addUserSession(UserSession $userSession): self
-    {
-        if (!$this->userSessions->contains($userSession)) {
-            $this->userSessions[] = $userSession;
-            $userSession->setUserId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserSession(UserSession $userSession): self
-    {
-        if ($this->userSessions->removeElement($userSession)) {
-            // set the owning side to null (unless already changed)
-            if ($userSession->getUserId() === $this) {
-                $userSession->setUserId(null);
-            }
-        }
+        $this->membership = $membership;
 
         return $this;
     }
