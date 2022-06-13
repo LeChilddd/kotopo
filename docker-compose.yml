@@ -17,8 +17,8 @@ services:
     container_name: traefik
     restart: unless-stopped
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
@@ -35,19 +35,22 @@ services:
 
 
   database:
-    image: mariadb:latest
+    image: mariadb:10.8.3
     container_name: mariaDB
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3306:3306
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - mariadb_bridge
+      mariadb_bridge:
+        aliases:
+          - db
+          - mysql
 
   php:
     container_name: php
@@ -58,7 +61,7 @@ services:
     environment:
       - DOMAIN=${DOMAIN}
       - BASE_URL=http://${DOMAIN}
-      - DATABASE_URL=mysql://root:root@db:3306/kotopo?serverVersion=mariadb-10.7.3
+      - DATABASE_URL=mysql://root:root@db:3306/kotopo?serverVersion=mariadb-10.8.3
     volumes:
       - ./app:/var/www/kotopo
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf
@@ -66,6 +69,7 @@ services:
       - database
     networks:
       - traefik_bridge
+      - mariadb_bridge
     labels:
       traefik.enable: 'true'
       traefik.docker.network: traefik_bridge
@@ -89,7 +93,7 @@ services:
     expose:
       - 3000
     ports:
-      - 4508:4508
+      - "4508:4508"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
