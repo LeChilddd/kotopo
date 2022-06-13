@@ -3,7 +3,12 @@ FROM php:8.1.5-apache as php
 USER root
 
 RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev
+<<<<<<< HEAD
 RUN docker-php-ext-install zip mysqli pdo pdo_mysql
+=======
+# récupère l'extension nécessaire pour docker 
+RUN docker-php-ext-install zip mysqli
+>>>>>>> :construction: WIP
 
 WORKDIR /var/www/kotopo
 
