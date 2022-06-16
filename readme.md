@@ -9,7 +9,7 @@ docker-compose up -d --build
 bin/composer update
 ```
 
-### To make entity
+### To make or modify entity
 ```
 bin/make entity
 ```
