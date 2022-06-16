@@ -5,13 +5,12 @@ PHP 8, Symfony 6, MariaDB version 8, Docker
 
 ## Run
 ```
-docker-compose up -d --force-recreate
-docker-compose up -d --build
+docker-compose up -d --force-recreate --build
 bin/composer update
 
 docker-compose down --remove-orphans to stop the Docker containers.
 ```
-Open your Browser at https://kotopo.localhost
+Open your Browser at kotopo.localhost
 Accept the auto-generated TLS certificate
 
 ## Database
