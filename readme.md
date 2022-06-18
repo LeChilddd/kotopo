@@ -10,9 +10,9 @@ docker-compose up -d
 Open your Browser at `kotopo.localhost`
 Accept the auto-generated TLS certificate
 
-if necessary
+If necessary stop container, recreate them and update composer
 ```
-docker-compose down --remove-orphans to stop the Docker containers.
+docker-compose down --remove-orphans
 docker-compose up -d --force-recreate --build
 bin/composer update
 ```
