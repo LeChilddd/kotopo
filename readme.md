@@ -1,17 +1,21 @@
 # Getting Started
 
 ## Needed
-PHP 8, Symfony 6, MariaDB version 8, Docker
+Docker
 
 ## Run
 ```
+docker-compose up -d
+```
+Open your Browser at `kotopo.localhost`
+Accept the auto-generated TLS certificate
+
+if necessary
+```
+docker-compose down --remove-orphans to stop the Docker containers.
 docker-compose up -d --force-recreate --build
 bin/composer update
-
-docker-compose down --remove-orphans to stop the Docker containers.
 ```
-Open your Browser at kotopo.localhost
-Accept the auto-generated TLS certificate
 
 ## Database
 To connect to phpmyadmin, in server add 'database', and enter your login.
@@ -24,12 +28,8 @@ bin/make entity
 ```
 bin/doctrine schema:validate
 ```
-### To modify attribute of entity
-```
-bin/doctrine migrations:execute --down "DoctrineMigrations\Version{number of migration's file}"
-```
 
-### To migrate data base
+### Create and run file of migration
 ```
 bin/make migration
 bin/doctrine migrations:migrate
