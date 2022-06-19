@@ -14,13 +14,13 @@ class UserLanguageLevel
     private int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userLanguageLevels')]
-    private $user;
+    private ?User $user;
 
     #[ORM\ManyToOne(targetEntity: Language::class, inversedBy: 'userLanguageLevels')]
-    private $language;
+    private ?Language $language;
 
     #[ORM\ManyToOne(targetEntity: Level::class, inversedBy: 'userLanguageLevels')]
-    private $level;
+    private ?Level $level;
 
     public function getId(): ?int
     {

@@ -19,7 +19,7 @@ class Service
     private string $name;
 
     #[ORM\OneToMany(mappedBy: 'service', targetEntity: Invoice::class)]
-    private $invoices;
+    private ArrayCollection $invoices;
 
     public function __construct()
     {

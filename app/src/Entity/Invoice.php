@@ -23,17 +23,17 @@ class Invoice
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'invoices')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\ManyToOne(targetEntity: Service::class, inversedBy: 'invoices')]
     #[ORM\JoinColumn(nullable: false)]
-    private $service;
+    private ?Service $service;
 
     #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: Membership::class)]
-    private $membership;
+    private ArrayCollection $membership;
 
     #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: LessonInvoice::class)]
-    private $lessonInvoices;
+    private ArrayCollection $lessonInvoices;
 
     public function __construct()
     {

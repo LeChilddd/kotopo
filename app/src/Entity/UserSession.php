@@ -15,11 +15,11 @@ class UserSession
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userSessions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $user;
+    private ?User $user;
 
     #[ORM\ManyToOne(targetEntity: Session::class, inversedBy: 'userSessions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $session;
+    private ?Session $session;
 
     public function getId(): ?int
     {

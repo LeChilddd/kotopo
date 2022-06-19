@@ -18,7 +18,7 @@ class InvoicePayment
 
     #[ORM\ManyToOne(targetEntity: Payment::class, inversedBy: 'invoicePayments')]
     #[ORM\JoinColumn(nullable: false)]
-    private $payment;
+    private ?Payment $payment;
 
     public function getId(): ?int
     {

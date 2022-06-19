@@ -17,17 +17,17 @@ class Session
 
     #[ORM\ManyToOne(targetEntity: Language::class, inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $language;
+    private ?Language $language;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]
-    private $userTeacher;
+    private ?User $userTeacher;
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: UserSession::class)]
-    private $userSessions;
+    private ArrayCollection $userSessions;
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: LessonInvoice::class)]
-    private $lessonInvoices;
+    private ArrayCollection $lessonInvoices;
 
     public function __construct()
     {

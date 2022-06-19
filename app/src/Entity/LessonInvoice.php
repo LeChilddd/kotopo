@@ -18,11 +18,11 @@ class LessonInvoice
 
     #[ORM\ManyToOne(targetEntity: Invoice::class, inversedBy: 'lessonInvoices')]
     #[ORM\JoinColumn(nullable: false)]
-    private int $invoice;
+    private ?Invoice $invoice;
 
     #[ORM\ManyToOne(targetEntity: Session::class, inversedBy: 'lessonInvoices')]
     #[ORM\JoinColumn(nullable: false)]
-    private $session;
+    private ?Session $session;
 
     public function getId(): ?int
     {

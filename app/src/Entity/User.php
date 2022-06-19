@@ -39,19 +39,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $gender;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membership::class, cascade: ['persist', 'remove'])]
-    private $membership;
+    private ?Membership $membership;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguageLevel::class)]
-    private $userLanguageLevels;
+    private ArrayCollection $userLanguageLevels;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Invoice::class)]
-    private $invoices;
+    private ArrayCollection $invoices;
 
     #[ORM\OneToMany(mappedBy: 'userTeacher', targetEntity: Session::class)]
-    private $sessions;
+    private ArrayCollection $sessions;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSession::class)]
-    private $userSessions;
+    private ArrayCollection $userSessions;
 
     public function __construct()
     {

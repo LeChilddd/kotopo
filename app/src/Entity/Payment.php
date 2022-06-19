@@ -16,10 +16,10 @@ class Payment
     private int $id;
 
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: PaymentMethod::class)]
-    private $paymentMethod;
+    private ArrayCollection $paymentMethod;
 
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: InvoicePayment::class)]
-    private $invoicePayments;
+    private ArrayCollection $invoicePayments;
 
     public function __construct()
     {

@@ -19,7 +19,7 @@ class Level
     private string $name;
 
     #[ORM\OneToMany(mappedBy: 'level', targetEntity: UserLanguageLevel::class)]
-    private $userLanguageLevels;
+    private ArrayCollection $userLanguageLevels;
 
     public function __construct()
     {

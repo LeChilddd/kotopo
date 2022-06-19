@@ -15,11 +15,11 @@ class Membership
 
     #[ORM\OneToOne(inversedBy: 'membership', targetEntity: User::class, cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private int $user;
+    private ?User $user;
 
     #[ORM\ManyToOne(targetEntity: Invoice::class, inversedBy: 'membership')]
     #[ORM\JoinColumn(nullable: false)]
-    private $invoice;
+    private ?Invoice $invoice;
 
     public function getId(): ?int
     {
