@@ -17,6 +17,10 @@ class Membership
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
+    #[ORM\ManyToOne(targetEntity: Invoice::class, inversedBy: 'membership')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $invoice;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -30,6 +34,18 @@ class Membership
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getInvoice(): ?Invoice
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(?Invoice $invoice): self
+    {
+        $this->invoice = $invoice;
 
         return $this;
     }

@@ -21,9 +21,13 @@ class Language
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: UserLanguageLevel::class)]
     private $userLanguageLevels;
 
+    #[ORM\OneToMany(mappedBy: 'language', targetEntity: Session::class)]
+    private $sessions;
+
     public function __construct()
     {
         $this->userLanguageLevels = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +71,36 @@ class Language
             // set the owning side to null (unless already changed)
             if ($userLanguageLevel->getLanguage() === $this) {
                 $userLanguageLevel->setLanguage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): self
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->setLanguage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getLanguage() === $this) {
+                $session->setLanguage(null);
             }
         }
 

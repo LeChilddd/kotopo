@@ -44,9 +44,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguageLevel::class)]
     private $userLanguageLevels;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Invoice::class)]
+    private $invoices;
+
+    #[ORM\OneToMany(mappedBy: 'userTeacher', targetEntity: Session::class)]
+    private $sessions;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSession::class)]
+    private $userSessions;
+
     public function __construct()
     {
         $this->userLanguageLevels = new ArrayCollection();
+        $this->invoices = new ArrayCollection();
+        $this->sessions = new ArrayCollection();
+        $this->userSessions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -208,6 +220,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($userLanguageLevel->getUser() === $this) {
                 $userLanguageLevel->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Invoice>
+     */
+    public function getInvoices(): Collection
+    {
+        return $this->invoices;
+    }
+
+    public function addInvoice(Invoice $invoice): self
+    {
+        if (!$this->invoices->contains($invoice)) {
+            $this->invoices[] = $invoice;
+            $invoice->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoice(Invoice $invoice): self
+    {
+        if ($this->invoices->removeElement($invoice)) {
+            // set the owning side to null (unless already changed)
+            if ($invoice->getUser() === $this) {
+                $invoice->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): self
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->setUserTeacher($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getUserTeacher() === $this) {
+                $session->setUserTeacher(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserSession>
+     */
+    public function getUserSessions(): Collection
+    {
+        return $this->userSessions;
+    }
+
+    public function addUserSession(UserSession $userSession): self
+    {
+        if (!$this->userSessions->contains($userSession)) {
+            $this->userSessions[] = $userSession;
+            $userSession->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserSession(UserSession $userSession): self
+    {
+        if ($this->userSessions->removeElement($userSession)) {
+            // set the owning side to null (unless already changed)
+            if ($userSession->getUser() === $this) {
+                $userSession->setUser(null);
             }
         }
 

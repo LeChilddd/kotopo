@@ -18,9 +18,13 @@ class Payment
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: PaymentMethod::class)]
     private $paymentMethod;
 
+    #[ORM\OneToMany(mappedBy: 'payment', targetEntity: InvoicePayment::class)]
+    private $invoicePayments;
+
     public function __construct()
     {
         $this->paymentMethod = new ArrayCollection();
+        $this->invoicePayments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -52,6 +56,36 @@ class Payment
             // set the owning side to null (unless already changed)
             if ($paymentMethod->getPayment() === $this) {
                 $paymentMethod->setPayment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, InvoicePayment>
+     */
+    public function getInvoicePayments(): Collection
+    {
+        return $this->invoicePayments;
+    }
+
+    public function addInvoicePayment(InvoicePayment $invoicePayment): self
+    {
+        if (!$this->invoicePayments->contains($invoicePayment)) {
+            $this->invoicePayments[] = $invoicePayment;
+            $invoicePayment->setPayment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoicePayment(InvoicePayment $invoicePayment): self
+    {
+        if ($this->invoicePayments->removeElement($invoicePayment)) {
+            // set the owning side to null (unless already changed)
+            if ($invoicePayment->getPayment() === $this) {
+                $invoicePayment->setPayment(null);
             }
         }
 
