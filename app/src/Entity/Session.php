@@ -13,7 +13,7 @@ class Session
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: Language::class, inversedBy: 'sessions')]
     #[ORM\JoinColumn(nullable: false)]

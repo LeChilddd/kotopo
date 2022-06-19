@@ -33,10 +33,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $firstname;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $lastname;
+    private string $lastname;
 
     #[ORM\Column(type: 'string', length: 25)]
-    private $gender;
+    private string $gender;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membership::class, cascade: ['persist', 'remove'])]
     private $membership;

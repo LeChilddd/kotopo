@@ -13,13 +13,13 @@ class Invoice
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'float')]
-    private $total;
+    private float $total;
 
     #[ORM\Column(type: 'boolean')]
-    private $isPayed;
+    private bool $isPayed;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'invoices')]
     #[ORM\JoinColumn(nullable: false)]

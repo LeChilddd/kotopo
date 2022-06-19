@@ -13,7 +13,7 @@ class Payment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: PaymentMethod::class)]
     private $paymentMethod;

@@ -11,7 +11,7 @@ class UserLanguageLevel
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'userLanguageLevels')]
     private $user;

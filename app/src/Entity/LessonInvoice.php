@@ -11,14 +11,14 @@ class LessonInvoice
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'integer')]
-    private $numberOfSession;
+    private int $numberOfSession;
 
     #[ORM\ManyToOne(targetEntity: Invoice::class, inversedBy: 'lessonInvoices')]
     #[ORM\JoinColumn(nullable: false)]
-    private $invoice;
+    private int $invoice;
 
     #[ORM\ManyToOne(targetEntity: Session::class, inversedBy: 'lessonInvoices')]
     #[ORM\JoinColumn(nullable: false)]

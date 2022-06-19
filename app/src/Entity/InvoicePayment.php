@@ -11,10 +11,10 @@ class InvoicePayment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private $id;
+    private int $id;
 
     #[ORM\Column(type: 'float')]
-    private $amount;
+    private float $amount;
 
     #[ORM\ManyToOne(targetEntity: Payment::class, inversedBy: 'invoicePayments')]
     #[ORM\JoinColumn(nullable: false)]
