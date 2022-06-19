@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -35,6 +37,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 25)]
     private $gender;
+
+    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membership::class, cascade: ['persist', 'remove'])]
+    private $membership;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguageLevel::class)]
+    private $userLanguageLevels;
+
+    public function __construct()
+    {
+        $this->userLanguageLevels = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -150,6 +163,53 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getMembership(): ?Membership
+    {
+        return $this->membership;
+    }
+
+    public function setMembership(Membership $membership): self
+    {
+        // set the owning side of the relation if necessary
+        if ($membership->getUser() !== $this) {
+            $membership->setUser($this);
+        }
+
+        $this->membership = $membership;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserLanguageLevel>
+     */
+    public function getUserLanguageLevels(): Collection
+    {
+        return $this->userLanguageLevels;
+    }
+
+    public function addUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
+    {
+        if (!$this->userLanguageLevels->contains($userLanguageLevel)) {
+            $this->userLanguageLevels[] = $userLanguageLevel;
+            $userLanguageLevel->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
+    {
+        if ($this->userLanguageLevels->removeElement($userLanguageLevel)) {
+            // set the owning side to null (unless already changed)
+            if ($userLanguageLevel->getUser() === $this) {
+                $userLanguageLevel->setUser(null);
+            }
+        }
 
         return $this;
     }

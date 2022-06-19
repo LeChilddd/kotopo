@@ -16,6 +16,10 @@ class PaymentMethod
     #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
+    #[ORM\ManyToOne(targetEntity: Payment::class, inversedBy: 'paymentMethod')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $payment;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +33,18 @@ class PaymentMethod
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPayment(): ?Payment
+    {
+        return $this->payment;
+    }
+
+    public function setPayment(?Payment $payment): self
+    {
+        $this->payment = $payment;
 
         return $this;
     }
