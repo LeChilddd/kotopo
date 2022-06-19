@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -26,7 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private string $password;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'integer', unique: true)]
     private int $cardNumber;
 
     #[ORM\Column(type: 'string', length: 100)]
@@ -52,6 +54,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSession::class)]
     private ArrayCollection $userSessions;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?DateTimeImmutable $createdAt;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $lastLogin;
+
+    #[ORM\Column(type: 'datetime_immutable')]
+    private ?DateTimeImmutable $expiredAt;
 
     public function __construct()
     {
@@ -312,6 +323,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userSession->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
+
+        return $this;
+    }
+
+    public function getExpiredAt(): ?DateTimeImmutable
+    {
+        return $this->expiredAt;
+    }
+
+    public function setExpiredAt(DateTimeImmutable $expiredAt): self
+    {
+        $this->expiredAt = $expiredAt;
 
         return $this;
     }

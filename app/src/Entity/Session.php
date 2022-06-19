@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SessionRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,6 +29,9 @@ class Session
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: LessonInvoice::class)]
     private ArrayCollection $lessonInvoices;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $date;
 
     public function __construct()
     {
@@ -120,6 +124,18 @@ class Session
                 $lessonInvoice->setSession(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

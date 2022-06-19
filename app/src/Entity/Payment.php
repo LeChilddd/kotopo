@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PaymentRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +21,9 @@ class Payment
 
     #[ORM\OneToMany(mappedBy: 'payment', targetEntity: InvoicePayment::class)]
     private ArrayCollection $invoicePayments;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $date;
 
     public function __construct()
     {
@@ -88,6 +92,18 @@ class Payment
                 $invoicePayment->setPayment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

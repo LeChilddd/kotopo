@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\InvoiceRepository;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,6 +35,9 @@ class Invoice
 
     #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: LessonInvoice::class)]
     private ArrayCollection $lessonInvoices;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTimeInterface $invoiceDate;
 
     public function __construct()
     {
@@ -150,6 +154,18 @@ class Invoice
                 $lessonInvoice->setInvoice(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getInvoiceDate(): ?DateTimeInterface
+    {
+        return $this->invoiceDate;
+    }
+
+    public function setInvoiceDate(DateTimeInterface $invoiceDate): self
+    {
+        $this->invoiceDate = $invoiceDate;
 
         return $this;
     }
