@@ -33,7 +33,7 @@
         "symfony/property-info": "6.0.*",
         "symfony/proxy-manager-bridge": "6.0.*",
         "symfony/runtime": "6.0.*",
-        "symfony/security-bundle": "6.0.*",
+        "symfony/security-bundle": "6.1",
         "symfony/serializer": "6.0.*",
         "symfony/string": "6.0.*",
         "symfony/translation": "6.0.*",
@@ -99,7 +99,7 @@
     },
     "require-dev": {
         "symfony/debug-bundle": "6.0.*",
-        "symfony/maker-bundle": "^1.0",
+        "symfony/maker-bundle": "^1.43",
         "symfony/stopwatch": "6.0.*",
         "symfony/web-profiler-bundle": "6.0.*"
     }
