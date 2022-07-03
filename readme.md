@@ -24,6 +24,10 @@ To connect to phpmyadmin, in server add 'database', and enter your login.
 ```
 bin/make entity
 ```
+### Make authentification
+```
+bin/make auth
+```
 ### To check schema of database
 ```
 bin/doctrine schema:validate
