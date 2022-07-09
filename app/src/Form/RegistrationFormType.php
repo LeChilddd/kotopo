@@ -38,16 +38,6 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 'label' => 'E-mail'
             ])
-       /*
-            ->add('created_at', DateType::class, [
-                'label' => 'date de creation'
-            ])
-            ->add('last_login', DateType::class, [
-                'label' => 'derniere connexion'
-            ])
-            ->add('expired_at', DateType::class, [
-                'label' => 'exprire'
-            ])*/
 
             ->add('rgpdConsent', CheckboxType::class, [
                 'mapped' => false,
