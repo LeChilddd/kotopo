@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="FR">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+        <title>
+            Kotopo
+        </title>
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.0/css/all.css"
+        <!-- CSS Files -->
         <title>{% block title %}Welcome!{% endblock %}</title>
+        {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
-        {% endblock %}
-        {% block javascripts %}
         {% endblock %}
     </head>
     <body>
+        {{ include('partials/navbar.html.twig') }}
         {% block body %}{% endblock %}
     </body>
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}
+    {% endblock %}
 </html>
