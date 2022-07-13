@@ -22,10 +22,25 @@ Encore
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+     * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
-    .addEntry('home', './assets/js/view/home.js')
+    .addEntry('app', './assets/js/app.js')
+    .copyFiles({
+        from: "./assets/img/",
+        to: "img/[path][name].[hash:8].[ext]",
+        pattern: /\.(png|jpe?g|ico|svg)$/,
+    })
+    .copyFiles({
+        from: "./assets/argon/img/",
+        to: "argon/img/[path][name].[ext]",
+        pattern: /\.(png|jpe?g|ico|svg)$/,
+    })
+    .copyFiles({
+        from: "./assets/argon/fonts/",
+        to: "argon/img/[path][name].[ext]",
+        pattern: /\.(eot|woff2?|ttf2?)$/,
+    })
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -61,10 +76,10 @@ Encore
     })
 
     // enables Sass/SCSS support
-    // enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    // enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()
