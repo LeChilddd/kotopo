@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="FR">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('assets/styles.css') }}">
-        {#{% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}
         {% endblock %}
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}#}
+        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
