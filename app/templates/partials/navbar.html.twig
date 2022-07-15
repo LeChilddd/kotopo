@@ -28,11 +28,7 @@
                             <span>Contact</span>
                         </a>
                     </div>
-                    <div class="col-auto m-auto">
-                        <a class="text-dark cursor-pointer" href="{{ path('app_login') }}">
-                            <span>Connexion</span>
-                        </a>
-                    </div>
+
                     {% if app.user %}
                         <div class="col-auto m-auto">
                             <a class="text-dark cursor-pointer" href="#">
@@ -42,6 +38,12 @@
                         <div class="col-auto m-auto">
                             <a class="text-dark cursor-pointer" href="{{ path('app_logout') }}">
                                 <span>Déconnexion</span>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-auto m-auto">
+                            <a class="text-dark cursor-pointer" href="{{ path('app_login') }}">
+                                <span>Connexion</span>
                             </a>
                         </div>
                     {% endif %}
