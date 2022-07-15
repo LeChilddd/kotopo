@@ -46,6 +46,11 @@
                                     Mot de passe oublié ?
                                 </a>
                             </p>
+                            <p class="mb-4 text-sm mx-auto">
+                                <a href="{{ path('app_register') }}" class="text-primary text-gradient font-weight-bold" id="forgottenPasswordBtn" data-token="{{ csrf_token('forgotten-password') }}">
+                                    S'inscrire
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
