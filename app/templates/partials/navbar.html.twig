@@ -33,6 +33,19 @@
                             <span>Connexion</span>
                         </a>
                     </div>
+                    {% if app.user %}
+                        <div class="col-auto m-auto">
+                            <a class="text-dark cursor-pointer" href="#">
+                                <span>Mon compte</span>
+                            </a>
+                        </div>
+                        <div class="col-auto m-auto">
+                            <a class="text-dark cursor-pointer" href="{{ path('app_logout') }}">
+                                <span>Déconnexion</span>
+                            </a>
+                        </div>
+                    {% endif %}
+
                 </div>
             </ul>
         </div>
