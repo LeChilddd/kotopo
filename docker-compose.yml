@@ -86,7 +86,9 @@ services:
       - NODE_ENV=development
       - BASE_URL=http://${DOMAIN}
     volumes:
-      - ./app:/var/www/kotopo
+      - './app:/var/www/kotopo'
+      - '${HOME}/.cache/yarn/:/home/node/.cache/yarn'
+
     expose:
       - 3000
     ports:

@@ -1,5 +1,9 @@
 const Encore = require('@symfony/webpack-encore');
 
+const path = require("path");
+
+
+
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -18,9 +22,25 @@ Encore
      * ENTRY CONFIG
      *
      * Each entry will result in one JavaScript file (e.g. app.js)
-     * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
+     * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
+    .addEntry('app', './assets/js/app.js')
+    .copyFiles({
+        from: "./assets/img/",
+        to: "img/[path][name].[hash:8].[ext]",
+        pattern: /\.(png|jpe?g|ico|svg)$/,
+    })
+    .copyFiles({
+        from: "./assets/argon/img/",
+        to: "argon/img/[path][name].[ext]",
+        pattern: /\.(png|jpe?g|ico|svg)$/,
+    })
+    .copyFiles({
+        from: "./assets/argon/fonts/",
+        to: "argon/img/[path][name].[ext]",
+        pattern: /\.(eot|woff2?|ttf2?)$/,
+    })
+
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -56,20 +76,39 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
+    // enableTypeScriptLoader()
 
     // uncomment if you use React
     //.enableReactPreset()
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
+    .enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
 ;
 
-module.exports = Encore.getWebpackConfig();
+const config = Encore.getWebpackConfig();
+
+module.exports = {
+    ...config,
+    mode: process.env.NODE_ENV || "development",
+    devServer: {
+        allowedHosts: 'all',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+            "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+        }
+    },
+    resolve: {
+        alias: {
+            "@assets": path.resolve(__dirname, "assets/"),
+            "@symfony/stimulus-bridge/controllers.json": path.resolve(__dirname, "assets/js/controllers.json"),
+        },
+    },
+};

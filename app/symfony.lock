@@ -92,6 +92,9 @@
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.10"
     },
+    "knplabs/knp-menu-bundle": {
+        "version": "v3.2.0"
+    },
     "laminas/laminas-code": {
         "version": "4.5.1"
     },
@@ -303,6 +306,18 @@
         "files": [
             "config/packages/twig.yaml",
             "templates/base.html.twig"
+        ]
+    },
+    "symfony/validator": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "5.3",
+            "ref": "c32cfd98f714894c4f128bb99aa2530c1227603c"
+        },
+        "files": [
+            "config/packages/validator.yaml"
         ]
     },
     "symfony/var-dumper": {

@@ -8,10 +8,12 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -44,24 +46,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?Membership $membership;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguageLevel::class)]
-    private ArrayCollection $userLanguageLevels;
+    private Collection $userLanguageLevels;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Invoice::class)]
-    private ArrayCollection $invoices;
+    private Collection $invoices;
 
     #[ORM\OneToMany(mappedBy: 'userTeacher', targetEntity: Session::class)]
-    private ArrayCollection $sessions;
+    private Collection $sessions;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSession::class)]
-    private ArrayCollection $userSessions;
+    private Collection $userSessions;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?DateTimeImmutable $createdAt;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?DateTimeInterface $lastLogin;
 
-    #[ORM\Column(type: 'datetime_immutable')]
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?DateTimeImmutable $expiredAt;
 
     public function __construct()
@@ -70,6 +72,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->invoices = new ArrayCollection();
         $this->sessions = new ArrayCollection();
         $this->userSessions = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->lastLogin = new \DateTime();
+        $this->expiredAt = new \DateTimeImmutable();
+
     }
 
     public function getId(): ?int

@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="page-header min-vh-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column justify-content-center mx-lg-0 mx-auto">
+                        <div class="card card-plain">
+                            <div class="card-header pb-0 text-start">
+                                <h4 class="font-weight-bolder">Inscription</h4>
+                                <p class="mb-0">Saisissez vos informations de base</p>
+                            </div>
+                            <div class="card-body">
+                                {{ form_start(form) }}
+                                {{ form_row(form.firstname) }}
+                                {{ form_row(form.lastname) }}
+                                {{ form_row(form.cardNumber) }}
+                                {{ form_row(form.gender) }}
+                                {{ form_row(form.email) }}
+                                {{ form_row(form.rgpdConsent) }}
+                                {{ form_row(form.password) }}
+                                {{ form_row(form.submit) }}
+                                {{ form_end(form) }}
+                            </div>
+
+                            <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                                <p class="mb-4 text-sm mx-auto">
+                                    <a href="{{ path('app_login') }}" class="text-primary text-gradient font-weight-bold">
+                                        Déjà membre ?
+                                    </a>
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-7 col-md-5 d-lg-flex d-none h-100 my-auto pe-0 text-center justify-content-center flex-column">
+                        <div id="logo-container"></div>
+                        <h2 class="mt-0 text-primary font-weight-bolder position-relative">Kotopo</h2>
+                        <p class="text-secondary position-relative h4 mb-6">Devenez membre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -11,6 +11,6 @@ class HomeController extends AbstractController
     #[Route('', name: 'app_home')]
     public function test() :Response
     {
-        return $this->render('home.html.twig');
+        return $this->render('admin/home.html.twig');
     }
 }
