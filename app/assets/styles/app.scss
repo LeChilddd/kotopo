@@ -22,22 +22,32 @@ li {
   margin-left: -25px;
 }
 
-.info {
-  border: 2px solid $secondary_color;
-  border-radius: 8px;
-}
-
 a:hover {
   font-weight: bold;
   color: $blue_pale_color;
 }
 
-
-
-.sidebar {
-  max-width: 200px;
+/*HOME PAGE*/
+.info {
+  border: 2px solid $secondary_color;
+  border-radius: 8px;
 }
 
+/*SIDEBAR*/
+.sidebar {
+  max-width: 200px;
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.calendar_header {
+  background-color: $blue_pale_color;
+  border-radius: 8px 8px 0 0;
+  padding: 8px;
+}
+
+/*FOOTER*/
 .footer {
   border-top: 1px solid $grey_pale_color;
 }
