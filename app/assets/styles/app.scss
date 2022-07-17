@@ -1,1 +1,30 @@
 @import "../argon/scss/argon-dashboard";
+
+$bg_dark: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,27,73,1) 51%, rgba(0,38,89,1) 73%, rgba(0,48,103,1) 86%, rgba(0,61,120,1) 100%);
+$white: #EAF1F8;
+$secondary_color: #3A527C;
+
+body{
+  background: $bg_dark;
+}
+
+body, h1, h2 {
+  color: $white;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+li {
+  list-style: none;
+}
+
+.info {
+  border: 2px solid $secondary_color;
+  border-radius: 8px;
+}
