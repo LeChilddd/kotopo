@@ -21,6 +21,7 @@
     <body>
         {{ include('partials/navbar.html.twig') }}
         {% block body %}{% endblock %}
+        {{ include('partials/footer.html.twig') }}
     </body>
     {{ encore_entry_script_tags('app') }}
     {% block javascripts %}

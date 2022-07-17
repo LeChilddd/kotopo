@@ -5,7 +5,7 @@ body{
   background: $bg_dark;
 }
 
-body, h1, h2 {
+body, h1, h2, a, hr {
   color: $white;
 }
 
@@ -18,10 +18,20 @@ h2 {
 }
 
 li {
-  list-style: none;
+  list-style-type: none;
+  margin-left: -25px;
 }
 
 .info {
   border: 2px solid $secondary_color;
   border-radius: 8px;
+}
+
+a:hover {
+  font-weight: bold;
+  color: $blue_pale_color;
+}
+
+.footer {
+  border-top: 1px solid $grey_pale_color;
 }
