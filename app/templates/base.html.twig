@@ -21,7 +21,7 @@
     <body>
         {{ include('partials/navbar.html.twig') }}
         <section class="d-flex main-section">
-            <div class="sidebar text-center m-3">{{ include('partials/sidebar.html.twig') }}</div>
+            {{ include('partials/sidebar.html.twig') }}
             <div>{% block body %}{% endblock %}</div>
         </section>
         {{ include('partials/footer.html.twig') }}
