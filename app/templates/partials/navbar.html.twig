@@ -1,56 +1,64 @@
-<nav class="navbar navbar-expand-lg navbar-transparent">
-    <div class="container d-flex justify-content-between">
-        <div class="row flex-nowrap">
-            <div class="col-auto m-auto">
-                <img src="assets/img/logo.png" alt="logo">
-                <i class="fa-solid fa-burger"></i>
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <img class="navbar-brand" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
+
+        {#  Button  don't work ... !!!#}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+        </button>
+        {#   Button don't work ... !!!#}
+
+        <div class="container underline d-flex justify-content-between">
+            <div class="row flex-nowrap">
+                <div class="active-link col-auto m-auto">
+                    <a class="cursor-pointer" href="{{ path('app_home') }}">
+                       <span>Kotopo</span>
+                    </a>
+                </div>
+                <div class="active-link col-auto m-auto">
+                    <a class="cursor-pointer" href="#">
+                        <span>Nos offres</span>
+                    </a>
+                </div>
+                <div class="active-link col-auto m-auto">
+                    <a class="cursor-pointer" href="#">
+                        <span>Programme</span>
+                    </a>
+                </div>
             </div>
-            <div class="col-auto m-auto">
-                <a class="text-dark cursor-pointer" href="{{ path('app_home') }}">
-                    <span>Le kotopo</span>
-                </a>
-            </div>
-            <div class="col-auto m-auto">
-                <a class="text-dark cursor-pointer" href="#">
-                    <span>Nos offres</span>
-                </a>
-            </div>
-            <div class="col-auto m-auto">
-                <a class="text-dark cursor-pointer" href="#">
-                    <span>Programme</span>
-                </a>
-            </div>
-        </div>
-        <div class="collapse navbar-collapse">
+
+            <div class="collapse navbar-collapse">
             <ul class="navbar-nav navbar-nav-hover ms-auto">
                 <div class="row flex-nowrap">
 
-                    <div class="col-auto m-auto">
-                        <a class="text-dark cursor-pointer" href="#">
+                    <div class="active-link col-auto m-auto">
+                        <a class="cursor-pointer" href="#">
                             <span>Contact</span>
                         </a>
                     </div>
 
                     {% if app.user %}
-                        <div class="col-auto m-auto">
-                            <a class="text-dark cursor-pointer" href="#">
+                        <div class="active-link col-auto m-auto">
+                            <a class="cursor-pointer" href="#">
                                 <span>Mon compte</span>
                             </a>
                         </div>
-                        <div class="col-auto m-auto">
-                            <a class="text-dark cursor-pointer" href="{{ path('app_logout') }}">
+                        <div class="active-link col-auto m-auto">
+                            <a class="cursor-pointer" href="{{ path('app_logout') }}">
                                 <span>Déconnexion</span>
                             </a>
                         </div>
                     {% else %}
-                        <div class="col-auto m-auto">
-                            <a class="text-dark cursor-pointer" href="{{ path('app_login') }}">
+                        <div class="active-link col-auto m-auto">
+                            <a class="cursor-pointer" href="{{ path('app_login') }}">
                                 <span>Connexion</span>
                             </a>
                         </div>
                     {% endif %}
                 </div>
             </ul>
+            </div>
         </div>
     </div>
 </nav>
+

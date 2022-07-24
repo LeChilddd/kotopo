@@ -19,10 +19,7 @@
     </head>
     <body>
         {{ include('partials/navbar.html.twig') }}
-{#        <section class="d-flex main-section">
-            {{ include('partials/sidebar.html.twig') }}#}
-            <div>{% block body %}{% endblock %}</div>
-{#        </section>#}
+        <div>{% block body %}{% endblock %}</div>
         {{ include('partials/footer.html.twig') }}
     </body>
     {{ encore_entry_script_tags('app') }}

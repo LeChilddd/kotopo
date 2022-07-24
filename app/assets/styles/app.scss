@@ -22,63 +22,66 @@ li {
   list-style-type: none;
 }
 
+// NAVBAR
+nav{
+  .underline {
+    padding-bottom: 1em;
+    border-bottom: 2px solid $secondary_color;
+  }
+}
 
 
 a:hover {
   font-weight: bold;
-  color: $blue_pale_color;
+  color: $cta;
 }
 
-// NAVBAR
-.navbar-toggler {
-  color: $white
-}
 
-.navbar li {
-  color: $white;
-}
-
-// HOME PAGE
-.info {
-  border: 2px solid $secondary_color;
-  border-radius: 8px;
-}
-
-.home-page {
-  img {
-    max-width: 50%;
-    height: auto;
-    margin: 2em;
+  .active-link:hover {
+    border-bottom: 1px solid $cta;
   }
-}
 
-@media screen and (max-width:700px) {
+  // HOME PAGE
+  .info {
+    border: 2px solid $secondary_color;
+    border-radius: 8px;
+  }
+
   .home-page {
-    flex-direction: column;
+    img {
+      max-width: 50%;
+      height: auto;
+      margin: 2em;
+    }
   }
-}
 
-// SIDEBAR
-.sidebar {
-  max-width: 200px;
-  height: 100%;
-  p {
-    margin-bottom: 0;
+  @media screen and (max-width:700px) {
+    .home-page {
+      flex-direction: column;
+    }
   }
-}
 
-// to uncomment when impmlement calendar
-/*.calendar_header {
-  background-color: $blue_pale_color;
-  border-radius: 8px 8px 0 0;
-  padding: 8px;
-}*/
-
-
-// FOOTER
-.footer {
-  border-top: 1px solid $grey_pale_color;
-  li {
-    margin-left: -25px;
+  // SIDEBAR
+  .sidebar {
+    max-width: 200px;
+    height: 100%;
+    p {
+      margin-bottom: 0;
+    }
   }
-}
+
+  // to uncomment when impmlement calendar
+  /*.calendar_header {
+    background-color: $blue_pale_color;
+    border-radius: 8px 8px 0 0;
+    padding: 8px;
+  }*/
+
+
+  // FOOTER
+  .footer {
+    border-top: 1px solid $secondary_color;
+    li {
+      margin-left: -25px;
+    }
+  }
