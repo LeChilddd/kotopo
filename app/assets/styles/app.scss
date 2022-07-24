@@ -5,7 +5,8 @@ body{
   background: $bg_dark;
 }
 
-body, h1, h2, a, i {
+body, h1, h2, h4, a, i, label,
+::placeholder {
   color: $white;
 }
 
@@ -76,6 +77,20 @@ a:hover {
     border-radius: 8px 8px 0 0;
     padding: 8px;
   }*/
+
+// FORM
+input[type="password"],
+input[type="email"]{
+  background-color: $secondary_color;
+  border: none;
+  border-radius: 25px;
+}
+
+.form-switch .form-check-input:checked {
+  border-color: $cta;
+  background-color: $cta;
+}
+
 
 
   // FOOTER

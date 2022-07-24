@@ -3,3 +3,14 @@ $white: #EAF1F8;
 $secondary_color: #3A527C;
 $blue_pale_color: #75B1E9;
 $cta: #007BFF;
+
+.btn-cta {
+  background-color: $cta;
+  border-radius: 25px;
+  color: $white;
+}
+
+.color-cta {
+  color: $cta;
+  text-decoration: underline;
+}
