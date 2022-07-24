@@ -5,12 +5,13 @@ body{
   background: $bg_dark;
 }
 
-body, h1, h2, a, hr {
+body, h1, h2, a, i {
   color: $white;
 }
 
 h1 {
   font-size: 2em;
+  margin-left: 2em;
 }
 
 h2 {
@@ -19,35 +20,65 @@ h2 {
 
 li {
   list-style-type: none;
-  margin-left: -25px;
 }
+
+
 
 a:hover {
   font-weight: bold;
   color: $blue_pale_color;
 }
 
-/*HOME PAGE*/
+// NAVBAR
+.navbar-toggler {
+  color: $white
+}
+
+.navbar li {
+  color: $white;
+}
+
+// HOME PAGE
 .info {
   border: 2px solid $secondary_color;
   border-radius: 8px;
 }
 
-/*SIDEBAR*/
+.home-page {
+  img {
+    max-width: 50%;
+    height: auto;
+    margin: 2em;
+  }
+}
+
+@media screen and (max-width:700px) {
+  .home-page {
+    flex-direction: column;
+  }
+}
+
+// SIDEBAR
 .sidebar {
   max-width: 200px;
+  height: 100%;
   p {
     margin-bottom: 0;
   }
 }
 
-.calendar_header {
+// to uncomment when impmlement calendar
+/*.calendar_header {
   background-color: $blue_pale_color;
   border-radius: 8px 8px 0 0;
   padding: 8px;
-}
+}*/
 
-/*FOOTER*/
+
+// FOOTER
 .footer {
   border-top: 1px solid $grey_pale_color;
+  li {
+    margin-left: -25px;
+  }
 }

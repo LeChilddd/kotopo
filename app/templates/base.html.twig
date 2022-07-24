@@ -3,8 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-        <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+        <link rel="icon" type="image/png" href="{{ asset('build/img/logo.png') }}">
         <title>
             Kotopo
         </title>
@@ -20,10 +19,10 @@
     </head>
     <body>
         {{ include('partials/navbar.html.twig') }}
-        <section class="d-flex main-section">
-            {{ include('partials/sidebar.html.twig') }}
+{#        <section class="d-flex main-section">
+            {{ include('partials/sidebar.html.twig') }}#}
             <div>{% block body %}{% endblock %}</div>
-        </section>
+{#        </section>#}
         {{ include('partials/footer.html.twig') }}
     </body>
     {{ encore_entry_script_tags('app') }}

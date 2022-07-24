@@ -6,22 +6,33 @@
 {% block javascripts %}
 {% endblock %}
 
-{%block body%}
-    <h1>
-        Bienvenue au KOTOPO
-    </h1>
-    <div class="info text-center m-5 p-3">Pour soutenir le KOTOPO, l’appel à dons est toujours d’actualité! L’intégralité de votre participation ira à l’association, la plateforme de dons ne prend pas de pourcentage.   Pour nous soutenir, cliquez ici . </div>
-    <div class="info text-center m-5 p-3">
-        <p>COVID-19 :</p>
-        <p>Merci de privilégier les inscriptions par correspondance aux cours de langues et le réglement par virement bancaire Plus d'infos.</p>
-        <p>Changements d'horaires :</p>
-        <p>En raison de la crise sanitaire et de la situation économique de l'association, des changements temporaires auront lieu les prochaines semaines :</p>
-        <p>Du lundi au jeudi : ouverture à 18h</p>
-    </div>
+{% block body %}
+    <section class="d-flex">
+        {{ include('partials/sidebar.html.twig') }}
+        <div class="section-header-content">
+            <h1>
+                Bienvenue au KOTOPO
+            </h1>
+            <div class="info text-center m-5 p-3">Pour soutenir le KOTOPO, l’appel à dons est toujours d’actualité!
+                L’intégralité de votre participation ira à l’association, la plateforme de dons ne prend pas de pourcentage.
+                Pour nous soutenir, cliquez ici .
+            </div>
+            <div class="info text-center m-5 p-3">
+                <p>COVID-19 :</p>
+                <p>Merci de privilégier les inscriptions par correspondance aux cours de langues et le réglement par virement
+                    bancaire Plus d'infos.</p>
+                <p>Changements d'horaires :</p>
+                <p>En raison de la crise sanitaire et de la situation économique de l'association, des changements temporaires
+                    auront lieu les prochaines semaines :</p>
+                <p>Du lundi au jeudi : ouverture à 18h</p>
+            </div>
+        </div>
+    </section>
+
     <section class="text-center m-5 p-3">
         <h2 class="mb-5">KOTOPO est un lieu multiforme</h2>
-        <div class="d-flex justify-content-center">
-            <img src="assets/img/bar.jpg" alt="photo du bar">
+        <div class="home-page d-flex justify-content-center align-items-center">
+            <img src="{{ asset('build/img/bar.jpg') }}" alt="photo du bar">
             <ul>
                 <li>Bar - café - petite restauration</li>
                 <li>Cours de langues</li>
@@ -36,14 +47,16 @@
     </section>
     <section class="text-center m-5 p-3">
         <h2 class="mb-5">Avec une programmation culturelle internationnale</h2>
-        <div class="d-flex justify-content-center">
+        <div class="home-page d-flex justify-content-center align-items-center">
             <ul>
                 <li>Rencontres linguistiques du lundi au jeudi</li>
                 <li>Concerts les vendredis ou samedis</li>
                 <li>Expositions</li>
-                <li>Conférences, débats, ateliers, lectures, soirées-contes, cuisine du monde, projections, animations pour enfants...</li>
+                <li>Conférences, débats, ateliers, lectures, soirées-contes, cuisine du monde, projections, animations
+                    pour enfants...
+                </li>
             </ul>
-            <img src="./assets/img/kotopo_bibliothèque.jpg" alt="photo bibliothèque">
+            <img src="{{ asset('build/img/kotopo_librairy.jpg') }}" alt="photo bibliothèque">
         </div>
     </section>
     <section class="text-center m-5 p-3">
@@ -57,4 +70,4 @@
             <li>informer le public sur l'espéranto, langue internationnale.</li>
         </ul>
     </section>
-{% endblock%}
+{% endblock %}
