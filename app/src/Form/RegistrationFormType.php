@@ -69,6 +69,7 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('submit', SubmitType::class, [
+                'label' => 'S\'inscrire',
                 'attr' => [
                     'class' => 'btn btn-primary bg-gradient-primary form-control ms-auto mb-0 mt-2'
                 ]

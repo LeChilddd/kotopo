@@ -1,1 +1,151 @@
 @import "../argon/scss/argon-dashboard";
+@import "_variables.scss";
+
+body{
+  background: $bg_dark;
+}
+
+body, h1, h2, h4, a, i, label,
+::placeholder {
+  color: $white;
+}
+
+h1 {
+  font-size: 2em;
+  margin-left: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+li {
+  list-style-type: none;
+}
+
+// NAVBAR
+nav{
+  .underline {
+    padding-bottom: 1em;
+    border-bottom: 2px solid $secondary_color;
+  }
+}
+
+
+a:hover {
+  font-weight: bold;
+  color: $cta;
+}
+
+
+  .active-link:hover {
+    border-bottom: 1px solid $cta;
+  }
+
+  // HOME PAGE
+  .info {
+    border: 2px solid $secondary_color;
+    border-radius: 8px;
+  }
+
+  .home-page {
+    img {
+      max-width: 50%;
+      height: auto;
+      margin: 2em;
+    }
+  }
+
+  @media screen and (max-width:700px) {
+    .home-page {
+      flex-direction: column;
+    }
+  }
+
+  // SIDEBAR
+  .sidebar {
+    max-width: 200px;
+    height: 100%;
+    p {
+      margin-bottom: 0;
+    }
+  }
+
+  // to uncomment when impmlement calendar
+  /*.calendar_header {
+    background-color: $blue_pale_color;
+    border-radius: 8px 8px 0 0;
+    padding: 8px;
+  }*/
+
+// FORM
+input[type="password"],
+input[type="email"]{
+  background-color: $secondary_color;
+  border: none;
+  border-radius: 25px;
+}
+
+.form-switch .form-check-input:checked {
+  border-color: $cta;
+  background-color: $cta;
+}
+
+
+
+  // FOOTER
+  .footer {
+    border-top: 1px solid $secondary_color;
+    li {
+      margin-left: -25px;
+    }
+  }
+
+.sidenav {
+  .navbar-nav {
+    ul {
+      padding-left: 1rem;
+    }
+    li {
+      list-style-type: none;
+    }
+  }
+  .navbar-collapse {
+    overflow-x: hidden !important;
+  }
+}
+
+.form-row-error ul, form label + ul {
+  padding-left: 0;
+
+  li {
+    color: $danger;
+    list-style: none;
+    font-size: 0.8rem;
+  }
+}
+
+.scroll-content {
+  min-height:90vh;
+}
+
+.required:after {
+  content:" *";
+  color: $primary;
+}
+
+::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #737373 !important;
+  border-radius: 1rem !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white !important;
+  border-radius: 1rem !important;
+}
+
+

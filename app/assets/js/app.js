@@ -8,8 +8,10 @@
 // any CSS you import will output into a single css file (app.scss in this case)
 require("@assets/styles/app.scss");
 
+const $ = require("jquery");
+global.$ = global.jQuery = $;
+
 const bootstrap = require("@assets/argon/js/core/bootstrap.min");
 global.bootstrap = bootstrap;
 
 require("@assets/argon/js/argon-dashboard");
-

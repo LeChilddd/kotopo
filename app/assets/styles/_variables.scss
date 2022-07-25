@@ -1,0 +1,16 @@
+$bg_dark: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(0,27,73,1) 51%, rgba(0,38,89,1) 73%, rgba(0,48,103,1) 86%, rgba(0,61,120,1) 100%);
+$white: #EAF1F8;
+$secondary_color: #3A527C;
+$blue_pale_color: #75B1E9;
+$cta: #007BFF;
+
+.btn-cta {
+  background-color: $cta;
+  border-radius: 25px;
+  color: $white;
+}
+
+.color-cta {
+  color: $cta;
+  text-decoration: underline;
+}
