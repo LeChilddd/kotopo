@@ -10,17 +10,26 @@
         <!--     Fonts and icons     -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
         <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.0/css/all.css"
+        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >
         <!-- CSS Files -->
         <title>{% block title %}Welcome!{% endblock %}</title>
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}
         {% endblock %}
     </head>
-    <body>
-        {{ include('partials/navbar.html.twig') }}
-        <div>{% block body %}{% endblock %}</div>
-        {{ include('partials/footer.html.twig') }}
+    <body class="g-sidenav-show">
+            {{ include('partials/sidebar.html.twig') }}
+        <main class="main-content position-relative border-radius-lg">
+            {{ include('partials/navbar.html.twig') }}
+
+        <div class="position-relative overflow-auto">
+            <div class="body container-fluid d-flex flex-column min-vh-90">
+                {% block body %}{% endblock %}
+                {% include 'partials/footer.html.twig' %}
+            </div>
+        </div>
+        </main>
+
     </body>
     {{ encore_entry_script_tags('app') }}
     {% block javascripts %}
