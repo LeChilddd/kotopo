@@ -13,13 +13,12 @@ class DrinkMenuController extends AbstractController
     public function index(): Response
     {
         return $this->render('drink_menu/drink_menu.html.twig', [
-            'controller_name' => 'DrinkMenuController',
         ]);
     }
 
     #[Route(path: '/drink-menu-pdf', name: 'drink_menu.pdf')]
     public function test(PdfService $pdf): void {
-        $html = 'test';
+        $html = $this->render('drink_menu/drink_menu.html.twig');
         $pdf->showPdfFile($html);
     }
 }

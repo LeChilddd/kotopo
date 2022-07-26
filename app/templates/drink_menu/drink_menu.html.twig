@@ -1,4 +1,75 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" type="image/png" href="{{ asset('build/img/logo.png') }}">
+        <title>
+            Kotopo
+        </title>
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+        <!-- Font Awesome Icons -->
+{#        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >#}
+        <!-- CSS Files -->
+        <title>{% block title %}Welcome!{% endblock %}</title>
+
+        {{ encore_entry_link_tags('app') }}
+        {% block stylesheets %}
+        {% endblock %}
+    </head>
+    <body>
+    <div class="container col-xl-4 col-lg-5 col-md-7 mx-auto">
+        <h1 class="text-center">Carte des boissons</h1>
+        <h2 class="text-center">Alcool</h2>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p >Bière blanche</p>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div>
+        <hr>
+        <h2 class="text-center">Softs</h2>
+        <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+        <hr>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div>
+        <h2 class="text-center">Boissons chaudes</h2>
+        <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div> <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div> <div>
+            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+            <p>Bière blanche</p>
+        </div>
+        <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+    </div>
+
+
+    {% include 'partials/footer.html.twig' %}
+
+
+    </body>
+
+    {{ encore_entry_script_tags('app') }}
+    {% block javascripts %}
+    {% endblock %}
+</html>
+{#{% extends 'base.html.twig' %}
 
 {% block title %}Hello DrinkMenuController!{% endblock %}
 
@@ -9,7 +80,8 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bonjour {{ controller_name }}! ✅</h1>
+    <h1>Bonjour !</h1>
+<img src="{{ '/var/www/kotopo/assets/img/logo.png'}}" alt="te">
 
     This friendly message is coming from:
     <ul>
@@ -17,4 +89,4 @@
         <li>Your template at <code><a href="{{ '/var/www/kotopo/templates/drink_menu/drink_menu.html.twig'|file_link(0) }}">templates/drink_menu/index.html.twig</a></code></li>
     </ul>
 </div>
-{% endblock %}
+{% endblock %}#}
