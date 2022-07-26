@@ -18,51 +18,51 @@
         {% endblock %}
     </head>
     <body>
-    <div class="container col-xl-4 col-lg-5 col-md-7 mx-auto">
-        <h1 class="text-center">Carte des boissons</h1>
-        <h2 class="text-center">Alcool</h2>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
+        <div class="d-flex justify-content-center align-items-center px-5 py-3">
+            <img class="pr-5" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
+            <h1 class="flex-grow-1 text-center">Carte des boissons</h1>
         </div>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p >Bière blanche</p>
-        </div>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div>
-        <hr>
-        <h2 class="text-center">Softs</h2>
-        <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-        <hr>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div>
-        <h2 class="text-center">Boissons chaudes</h2>
-        <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div> <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div> <div>
-            <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-            <p>Bière blanche</p>
-        </div>
-        <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-    </div>
 
-
-    {% include 'partials/footer.html.twig' %}
-
-
+        <div class="container col-xl-4 col-lg-5 col-md-7 mx-auto">
+            <h2 class="text-center">Alcool</h2>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
+                <p>Bière blanche</p>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">L'AIR DU TEMPS</p><p class="text-bold">4,50€</p></div>
+                <p >Bière ambrée</p>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">LA NUIT DES TEMPS</p><p class="text-bold">4,50€</p></div>
+                <p>Bière brune</p>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">AU FILS DU TEMPS</p><p class="text-bold">4,50€</p></div>
+                <p>Bière blonde</p>
+            </div>
+            <hr>
+            <h2 class="text-center">Softs</h2>
+            <div class="d-flex justify-content-between"><p class="text-bold">COCA COLA</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">COCA COLA ZERO</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">LIMONADE</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">PERRIER</p><p class="text-bold">2,50€</p></div>
+            <hr>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">SIROPS</p><p class="text-bold">2,50€</p></div>
+                <p>Grenadine, menthe, citron, cassis, pêche</p>
+            </div>
+            <h2 class="text-center">Boissons chaudes</h2>
+            <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">COMPOSITION DU CIEL</p><p class="text-bold">3,00€</p></div>
+                <p>Thé noir parfumé</p>
+            </div> <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">MENTHE</p><p class="text-bold">3,00€</p></div>
+                <p>Thé vert parfumé</p>
+            </div> <div>
+                <div class="d-flex justify-content-between"><p class="text-bold">NURELIA</p><p class="text-bold">3,00€</p></div>
+                <p>Thé noir</p>
+            </div>
+            <div class="d-flex justify-content-between"><p class="text-bold">CHOCOLAT</p><p class="text-bold">4,50€</p></div>
+        </div>
+        {% include 'partials/footer.html.twig' %}
     </body>
 
     {{ encore_entry_script_tags('app') }}
