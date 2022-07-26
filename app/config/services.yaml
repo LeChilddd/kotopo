@@ -24,6 +24,8 @@ services:
       resource: '../src/EntityListener/'
       tags: [ 'doctrine.orm.entity_listener' ]
 
+    App\EventSubscriber\CalendarSubscriber:
+
     app.menu_builder:
         class: App\Menu\MenuBuilder
         arguments: [ "@knp_menu.factory" ]
