@@ -17,6 +17,11 @@ docker-compose up -d --force-recreate --build
 bin/composer update
 ```
 
+## Update environment
+```
+bin/yarn install
+```
+
 ## Database
 To connect to phpmyadmin, in server add 'database', and enter your login.
 
