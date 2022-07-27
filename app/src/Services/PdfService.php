@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use Dompdf\Dompdf;
-use Dompdf\Options;
+//use Dompdf\Options;
 
 class PdfService
 {
@@ -12,12 +12,12 @@ class PdfService
     public function __construct(){
         $this->domPdf = new DomPdf();
 
-        $pdfOptions = new Options();
-
-        $pdfOptions->set('defaultFont', 'Garamond');
-        $pdfOptions->set('isRemoteEnabled', true);
-
-        $this->domPdf->setOptions($pdfOptions);
+//        $pdfOptions = new Options();
+//
+//        $pdfOptions->set('defaultFont', 'Courier');
+////        $pdfOptions->set('isRemoteEnabled', true);
+//
+//        $this->domPdf->setOptions($pdfOptions);
     }
 
     public function  showPdfFile($html): void
