@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="icon" type="image/png" href="{{ asset('build/img/logo.png') }}">
-        <title>
-            Kotopo
-        </title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/png" href="{{ asset('build/img/logo.png') }}">
+    <title>
+        Kotopo
+    </title>
 
     <style>
         body, html{
@@ -22,6 +22,13 @@
         }
         a {
             text-decoration: none;
+
+        }
+        p, a, li {
+            font-size: 10px;
+        }
+        h2 {
+            font-size: 14px;
         }
         li {
             list-style: none;
@@ -30,143 +37,141 @@
         hr {
             width: 50%;
         }
-        .drink-and-price-line {
-            display: flex;
-            justify-content: space-between;
+        .bold {
             font-weight: bold;
         }
         .description {
-            margin-top: -0.5em;
+            margin-top: -1em;
+        }
+        .price_align{
+            text-align: right;
+        }
+        .td_align {
+            vertical-align:top;
+        }
+        table{
+            width: 80%;
+            margin: auto;
+        }
+
+        table tr td {
+            /*width: 350px;*/
+            height: auto;
         }
         .footer {
             text-align: center;
+
         }
     </style>
 
-        <!--     Fonts and icons     -->
-{#        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />#}
-        <!-- Font Awesome Icons -->
-{#        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >#}
-        <!-- CSS Files -->
-{#       <title>{% block title %}Welcome!{% endblock %}</title>#}
+    <!--     Fonts and icons     -->
+    {#        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />#}
+    <!-- Font Awesome Icons -->
+    {#        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >#}
+    <!-- CSS Files -->
+    {#       <title>{% block title %}Welcome!{% endblock %}</title>#}
 
 
-{#        {{ encore_entry_link_tags('app') }}#}
-{#        {% block stylesheets %}#}
-{#        {% endblock %}#}
-    </head>
-    <body>
-        <div style="width: 80%; margin: auto; display: flex">
-            <img style="width: 100px; height: 100px" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
-            <img  style="width: 100px; height: 100px" src="/var/www/domain/images/myimage.jpg" alt="logo de l'association" />
-            <h1  style="color:white; flex-grow: 2; ">Carte des boissons</h1>
-        </div>
+    {#        {{ encore_entry_link_tags('app') }}#}
+    {#        {% block stylesheets %}#}
+    {#        {% endblock %}#}
+</head>
+<body>
+<div style="width: 80%; margin: auto; display: flex">
+    {#             CLEAN CODE A FAIRE !!!!! #}
+    <img style="width: 100px; height: 100px" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
+    {#            <img  style="width: 100px; height: 100px" src="/var/www/kotopo/assets/img/logo.png" alt="logo de l'association" />#}
+    <h1  style="color:white; flex-grow: 2; ">Carte des boissons</h1>
+</div>
 
-        <div style="width: 50%; margin: auto;">
-            <h2>Alcool</h2>
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>AU TEMPS POUR MOI</p>
-                    <p>4,50€</p>
-                </div>
-                <p class="description">Bière blanche</p>
-            </div>
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>L'AIR DU TEMPS</p>
-                    <p>4,50€</p>
-                </div>
-                <p class="description" >Bière ambrée</p>
-            </div>
-
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>LA NUIT DES TEMPS</p>
-                    <p>4,50€</p>
-                </div>
-                <p class="description">Bière brune</p>
-            </div>
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>AU FILS DU TEMPS</p>
-                    <p>4,50€</p>
-                </div>
-                <p class="description">Bière blonde</p>
-            </div>
-            <hr>
-
-            <h2 class="text-center">Softs</h2>
-
-            <div class="drink-and-price-line">
-                <p>COCA COLA</p>
-                <p>3,00€</p>
-            </div>
-
-            <div class="drink-and-price-line">
-                <p>COCA COLA ZERO</p>
-                <p>3,00€</p>
-            </div>
-
-            <div class="drink-and-price-line">
-                <p>LIMONADE</p>
-                <p>3,00€</p>
-            </div>
-
-            <div class="drink-and-price-line">
-                <p>PERRIER</p>
-                <p>2,50€</p>
-            </div>
-
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>SIROPS</p>
-                    <p>2,50€</p>
-                </div>
-                <p class="description">Grenadine, menthe, citron, cassis, pêche</p>
-            </div>
-            <hr>
-
-
-            <h2 class="text-center">Boissons chaudes</h2>
-            <div>
-                <div class="drink-and-price-line">
-                    <p>COMPOSITION DU CIEL</p>
-                    <p>3,00€</p>
-                </div>
-                <p class="description">Thé noir parfumé</p>
-            </div>
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>MENTHE</p>
-                    <p>3,00€</p>
-                </div>
-                <p class="description">Thé vert parfumé</p>
-            </div>
-
-            <div>
-                <div class="drink-and-price-line">
-                    <p>NURELIA</p>
-                    <p>3,00€</p>
-                </div>
-                <p class="description">Thé noir</p>
-            </div>
-            <div class="drink-and-price-line">
-                <p>CHOCOLAT</p>
-                <p>4,50€</p>
-            </div>
-        </div>
-
-        <div class="footer">
-            <hr style="width: 120%; border-top: none">
-            {% include 'partials/footer.html.twig' %}
-        </div>
-    </body>
+<div  style="width: 50%; margin: auto">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2"><h2>Alcool</h2> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><p class="bold">AU TEMPS POUR MOI</p><p class="description">Bière blanche</p></td>
+            <td class="td_align"><p class="bold price_align">4,50€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">L'AIR DU TEMPS</p><p class="description">Bière ambrée</p></td>
+            <td class="td_align"><p class="bold price_align">4,50€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">LA NUIT DES TEMPS</p><p class="description">Bière brune</p></td>
+            <td class="td_align"><p class="bold price_align">4,50€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">AU FILS DU TEMPS</p><p class="description">Bière blonde</p></td>
+            <td class="td_align"><p class="bold price_align">4,50€</p></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2"><h2>Softs</h2> </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td ><p class="bold">COCA COLA</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">COCA COLA ZERO</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">PERRIER</p></td>
+            <td class="td_align"><p class="bold price_align">2,50€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">COCA COLA</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">SIROPS</p><p class="description">Grenadine, menthe, citron, cassis, pêche</p></td>
+            <td class="td_align"><p class="bold price_align">2,50€</p></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2"><h2>Boissons chaudes</h2></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+            <td ><p class="bold">COMPOSITION DU CIEL</p><p class="description">Bière blanche</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">MENTHE</p><p class="description">Thé vert parfumé</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">NURELIA</p><p class="description">Thé noir</p></td>
+            <td class="td_align"><p class="bold price_align">3,00€</p></td>
+        </tr>
+        <tr >
+            <td ><p class="bold">CHOCOLAT</p></td>
+            <td class="td_align"><p class="bold price_align">4,50€</p></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="footer">
+    <hr style="width: 120%; border-top: none">
+    {% include 'partials/footer.html.twig' %}
+</div>
+</body>
 
 {#</html>#}
 {#{% extends 'base.html.twig' %}
@@ -190,3 +195,4 @@
     </ul>
 </div>
 {% endblock %}#}
+
