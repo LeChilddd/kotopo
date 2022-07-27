@@ -15,6 +15,7 @@ class PdfService
         $pdfOptions = new Options();
 
         $pdfOptions->set('defaultFont', 'Garamond');
+        $pdfOptions->set('isRemoteEnabled', true);
 
         $this->domPdf->setOptions($pdfOptions);
     }

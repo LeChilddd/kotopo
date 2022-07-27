@@ -6,69 +6,169 @@
         <title>
             Kotopo
         </title>
+
+    <style>
+        body, html{
+            margin: 0;
+            background-color: #0E0028;
+        }
+
+        h1, h2, li, a {
+            text-align: center;
+        }
+
+        p, h1, h2, li, a, hr{
+            color: #FFFEFF;
+        }
+        a {
+            text-decoration: none;
+        }
+        li {
+            list-style: none;
+            margin-left: -3em;
+        }
+        hr {
+            width: 50%;
+        }
+        .drink-and-price-line {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+        .description {
+            margin-top: -0.5em;
+        }
+        .footer {
+            text-align: center;
+        }
+    </style>
+
         <!--     Fonts and icons     -->
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+{#        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />#}
         <!-- Font Awesome Icons -->
 {#        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >#}
         <!-- CSS Files -->
-        <title>{% block title %}Welcome!{% endblock %}</title>
+{#       <title>{% block title %}Welcome!{% endblock %}</title>#}
 
-        {{ encore_entry_link_tags('app') }}
-        {% block stylesheets %}
-        {% endblock %}
+
+{#        {{ encore_entry_link_tags('app') }}#}
+{#        {% block stylesheets %}#}
+{#        {% endblock %}#}
     </head>
     <body>
-        <div class="d-flex justify-content-center align-items-center px-5 py-3">
-            <img class="pr-5" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
-            <h1 class="flex-grow-1 text-center">Carte des boissons</h1>
+        <div style="width: 80%; margin: auto; display: flex">
+            <img style="width: 100px; height: 100px" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
+            <img  style="width: 100px; height: 100px" src="/var/www/domain/images/myimage.jpg" alt="logo de l'association" />
+            <h1  style="color:white; flex-grow: 2; ">Carte des boissons</h1>
         </div>
 
-        <div class="container col-xl-4 col-lg-5 col-md-7 mx-auto">
-            <h2 class="text-center">Alcool</h2>
+        <div style="width: 50%; margin: auto;">
+            <h2>Alcool</h2>
+
             <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">AU TEMPS POUR MOI</p><p class="text-bold">4,50€</p></div>
-                <p>Bière blanche</p>
+                <div class="drink-and-price-line">
+                    <p>AU TEMPS POUR MOI</p>
+                    <p>4,50€</p>
+                </div>
+                <p class="description">Bière blanche</p>
             </div>
+
             <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">L'AIR DU TEMPS</p><p class="text-bold">4,50€</p></div>
-                <p >Bière ambrée</p>
+                <div class="drink-and-price-line">
+                    <p>L'AIR DU TEMPS</p>
+                    <p>4,50€</p>
+                </div>
+                <p class="description" >Bière ambrée</p>
             </div>
+
+
             <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">LA NUIT DES TEMPS</p><p class="text-bold">4,50€</p></div>
-                <p>Bière brune</p>
+                <div class="drink-and-price-line">
+                    <p>LA NUIT DES TEMPS</p>
+                    <p>4,50€</p>
+                </div>
+                <p class="description">Bière brune</p>
             </div>
+
             <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">AU FILS DU TEMPS</p><p class="text-bold">4,50€</p></div>
-                <p>Bière blonde</p>
+                <div class="drink-and-price-line">
+                    <p>AU FILS DU TEMPS</p>
+                    <p>4,50€</p>
+                </div>
+                <p class="description">Bière blonde</p>
             </div>
             <hr>
+
             <h2 class="text-center">Softs</h2>
-            <div class="d-flex justify-content-between"><p class="text-bold">COCA COLA</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">COCA COLA ZERO</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">LIMONADE</p><p class="text-bold">3,00€</p></div> <div class="d-flex justify-content-between"><p class="text-bold">PERRIER</p><p class="text-bold">2,50€</p></div>
-            <hr>
-            <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">SIROPS</p><p class="text-bold">2,50€</p></div>
-                <p>Grenadine, menthe, citron, cassis, pêche</p>
+
+            <div class="drink-and-price-line">
+                <p>COCA COLA</p>
+                <p>3,00€</p>
             </div>
+
+            <div class="drink-and-price-line">
+                <p>COCA COLA ZERO</p>
+                <p>3,00€</p>
+            </div>
+
+            <div class="drink-and-price-line">
+                <p>LIMONADE</p>
+                <p>3,00€</p>
+            </div>
+
+            <div class="drink-and-price-line">
+                <p>PERRIER</p>
+                <p>2,50€</p>
+            </div>
+
+
+            <div>
+                <div class="drink-and-price-line">
+                    <p>SIROPS</p>
+                    <p>2,50€</p>
+                </div>
+                <p class="description">Grenadine, menthe, citron, cassis, pêche</p>
+            </div>
+            <hr>
+
+
             <h2 class="text-center">Boissons chaudes</h2>
             <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">COMPOSITION DU CIEL</p><p class="text-bold">3,00€</p></div>
-                <p>Thé noir parfumé</p>
-            </div> <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">MENTHE</p><p class="text-bold">3,00€</p></div>
-                <p>Thé vert parfumé</p>
-            </div> <div>
-                <div class="d-flex justify-content-between"><p class="text-bold">NURELIA</p><p class="text-bold">3,00€</p></div>
-                <p>Thé noir</p>
+                <div class="drink-and-price-line">
+                    <p>COMPOSITION DU CIEL</p>
+                    <p>3,00€</p>
+                </div>
+                <p class="description">Thé noir parfumé</p>
             </div>
-            <div class="d-flex justify-content-between"><p class="text-bold">CHOCOLAT</p><p class="text-bold">4,50€</p></div>
+
+            <div>
+                <div class="drink-and-price-line">
+                    <p>MENTHE</p>
+                    <p>3,00€</p>
+                </div>
+                <p class="description">Thé vert parfumé</p>
+            </div>
+
+            <div>
+                <div class="drink-and-price-line">
+                    <p>NURELIA</p>
+                    <p>3,00€</p>
+                </div>
+                <p class="description">Thé noir</p>
+            </div>
+            <div class="drink-and-price-line">
+                <p>CHOCOLAT</p>
+                <p>4,50€</p>
+            </div>
         </div>
-        {% include 'partials/footer.html.twig' %}
+
+        <div class="footer">
+            <hr style="width: 120%; border-top: none">
+            {% include 'partials/footer.html.twig' %}
+        </div>
     </body>
 
-    {{ encore_entry_script_tags('app') }}
-    {% block javascripts %}
-    {% endblock %}
-</html>
+{#</html>#}
 {#{% extends 'base.html.twig' %}
 
 {% block title %}Hello DrinkMenuController!{% endblock %}
