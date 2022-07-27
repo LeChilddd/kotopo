@@ -60,29 +60,15 @@
         }
         .footer {
             text-align: center;
-
         }
     </style>
 
-    <!--     Fonts and icons     -->
-    {#        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />#}
-    <!-- Font Awesome Icons -->
-    {#        <link href="https://use.fontawesome.com/releases/v6.1.0/css/all.css" rel="stylesheet" >#}
-    <!-- CSS Files -->
-    {#       <title>{% block title %}Welcome!{% endblock %}</title>#}
-
-
-    {#        {{ encore_entry_link_tags('app') }}#}
-    {#        {% block stylesheets %}#}
-    {#        {% endblock %}#}
 </head>
 <body>
-<div style="width: 80%; margin: auto; display: flex">
-    {#             CLEAN CODE A FAIRE !!!!! #}
-    <img style="width: 100px; height: 100px" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
-    {#            <img  style="width: 100px; height: 100px" src="/var/www/kotopo/assets/img/logo.png" alt="logo de l'association" />#}
+{#<div style="width: 80%; margin: auto; display: flex">#}
+{#    <img style="width: 100px; height: 100px" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">#}
     <h1  style="color:white; flex-grow: 2; ">Carte des boissons</h1>
-</div>
+{#</div>#}
 
 <div  style="width: 50%; margin: auto">
     <table>
@@ -172,27 +158,3 @@
     {% include 'partials/footer.html.twig' %}
 </div>
 </body>
-
-{#</html>#}
-{#{% extends 'base.html.twig' %}
-
-{% block title %}Hello DrinkMenuController!{% endblock %}
-
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Bonjour !</h1>
-<img src="{{ '/var/www/kotopo/assets/img/logo.png'}}" alt="te">
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/kotopo/src/Controller/DrinkMenuController.php'|file_link(0) }}">src/Controller/DrinkMenuController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/kotopo/templates/drink_menu/drink_menu.html.twig'|file_link(0) }}">templates/drink_menu/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}#}
-
