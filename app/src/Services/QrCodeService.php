@@ -31,7 +31,7 @@ class QrCodeService
             ->labelText('Contact Kotopo')
             ->build()
         ;
-
+        
         $result->saveToFile((dirname(__DIR__, levels: 2).'/assets/qr-code/qrcodeContact.png'));
         return $result->getDataUri();
     }
