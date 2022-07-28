@@ -11,6 +11,8 @@
         "doctrine/doctrine-bundle": "^2.5",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.11",
+        "endroid/qr-code": "^4.4",
+        "endroid/qr-code-bundle": "^4.1",
         "knplabs/knp-menu-bundle": "^3.2",
         "symfony/console": "6.0.*",
         "symfony/dotenv": "6.0.*",
@@ -28,7 +30,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "endroid/installer": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
