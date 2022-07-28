@@ -6,18 +6,19 @@ use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
 use Endroid\QrCode\Label\Font\NotoSans;
+use function dirname;
 
 class QrCodeService
 {
-
-    protected $builder;
+    protected BuilderInterface $builder;
 
     public function __construct(BuilderInterface $builder)
     {
         $this->builder = $builder;
     }
 
-    public function qrCodeKotopoContact(){
+    public function qrCodeKotopoContact(): string
+    {
         $url = 'http://www.kotopo.net/nouscontacter.php?L=fr';
 
         $result = $this->builder
@@ -31,12 +32,7 @@ class QrCodeService
             ->build()
         ;
 
-     /*   // Create generic logo
-        $logo = Logo::create(__DIR__.'/assets/img/logo.png')
-            ->setResizeToWidth(50);*/
-
-        $result->saveToFile((\dirname(__DIR__, levels: 2).'/assets/qr-code/qrcodeContact.png'));
+        $result->saveToFile((dirname(__DIR__, levels: 2).'/assets/qr-code/qrcodeContact.png'));
         return $result->getDataUri();
     }
-
 }
