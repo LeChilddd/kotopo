@@ -55,8 +55,8 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
                 'label' => 'J\'accepte les règles RGPD ',
-                'attr' => ['class' => 'required_field_toggle mb-2 mx-3 form-check-input'],
-                'row_attr' => ['class' => 'form-check form-switch ps-0 d-flex flex-column']
+                'attr' => ['class' => 'required_field_toggle my-4 mx-2 form-check-input'],
+                'row_attr' => ['class' => 'form-check form-switch ps-0 d-flex flex-row-reverse justify-content-end']
             ])
 
             ->add('password', RepeatedType::class, [
@@ -71,7 +71,7 @@ class RegistrationFormType extends AbstractType
             ->add('submit', SubmitType::class, [
                 'label' => 'S\'inscrire',
                 'attr' => [
-                    'class' => 'btn btn-primary bg-gradient-primary form-control ms-auto mb-0 mt-2'
+                    'class' => 'btn btn-cta form-control ms-auto mb-0 mt-2'
                 ]
             ])
 

@@ -80,10 +80,12 @@ a:hover {
 
 // FORM
 input[type="password"],
-input[type="email"]{
+input[type="email"],
+input[type="text"]{
   background-color: $secondary_color;
   border: none;
   border-radius: 25px;
+  color: $white;
 }
 
 .form-switch .form-check-input:checked {
