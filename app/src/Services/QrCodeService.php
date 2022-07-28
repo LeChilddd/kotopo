@@ -5,6 +5,7 @@ namespace App\Services;
 use Endroid\QrCode\Builder\BuilderInterface;
 use Endroid\QrCode\Encoding\Encoding;
 use Endroid\QrCode\ErrorCorrectionLevel\ErrorCorrectionLevelHigh;
+use Endroid\QrCode\Label\Font\NotoSans;
 
 class QrCodeService
 {
@@ -16,18 +17,26 @@ class QrCodeService
         $this->builder = $builder;
     }
 
-    public function qrCode(){
-        $url = 'https://www.youtube.com/watch?v=c7HDJKvRrYY&t=4s';
+    public function qrCodeKotopoContact(){
+        $url = 'http://www.kotopo.net/nouscontacter.php?L=fr';
 
         $result = $this->builder
             ->data($url)
             ->encoding(new Encoding('UTF-8'))
             ->errorCorrectionLevel(new ErrorCorrectionLevelHigh())
-            ->size(400)
-            ->margin(10)
-            ->labelText('Carte des boissons')
+            ->size(100)
+            ->labelFont(new NotoSans(8))
+            ->margin(0)
+            ->labelText('Contact Kotopo')
             ->build()
         ;
+
+     /*   // Create generic logo
+        $logo = Logo::create(__DIR__.'/assets/img/logo.png')
+            ->setResizeToWidth(50);*/
+
+        $result->saveToFile((\dirname(__DIR__, levels: 2).'/assets/qr-code/qrcodeContact.png'));
+        return $result->getDataUri();
     }
 
 }
