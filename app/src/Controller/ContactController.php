@@ -19,13 +19,19 @@ class ContactController extends AbstractController
     ): Response
     {
         $contact = new Contact();
+
+        if($this->getUser()) {
+            $contact->setFirstname($this->getUser()->getFirstname())
+                 ->setLastname($this->getUser()->getLastname())
+                 ->setEmail($this->getUser()->getEmail());
+        }
+        
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
 
             $contact = $form->getData();
-
 
             $manager->persist($contact);
             $manager->flush();
