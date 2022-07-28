@@ -5,7 +5,7 @@
 {% block body %}
     <section>
         <div class="page-header min-vh-100">
-            <div class="container">
+            <div class="container mx-0 mx-md-8">
                 <div>
                     <div class="card card-plain text-center">
                         <h4 class="font-weight-bolder">Formulaire de contact</h4>
@@ -16,14 +16,17 @@
                         {% endfor %}
                         <div class="card-body text-start">
                             {{ form_start(form) }}
-                            <div class="d-flex justify-content-between">
-                                {{ form_row(form.firstname) }}
-                                {{ form_row(form.lastname) }}
-                                {{ form_row(form.email) }}
+                            <div class="row align-items-baseline d-flex my-5">
+                                <div class="col-lg">{{ form_row(form.firstname) }}</div>
+                                <div class="col-lg">  {{ form_row(form.lastname) }}</div>
+                                <div class="col-lg">{{ form_row(form.email) }}</div>
                             </div>
-                            {{ form_row(form.subject) }}
-                            {{ form_row(form.message) }}
-                            {{ form_row(form.submit) }}
+                            <div class="my-5">{{ form_row(form.subject) }}</div>
+                            <div class="my-5">{{ form_row(form.message) }}</div>
+                            <div class="my-5">{{ form_row(form.submit) }}</div>
+
+
+
                             {{ form_end(form) }}
                         </div>
                     </div>
