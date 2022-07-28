@@ -12,6 +12,11 @@ class AppFixtures extends Fixture
         // $product = new Product();
         // $manager->persist($product);
 
+        // Contact
+        for ($i = 0; $i < 5; i++) {
+            
+        }
+
         $manager->flush();
     }
 }
