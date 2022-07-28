@@ -1,0 +1,2 @@
+[alias]
+    sync-main = "!git fetch && git rebase origin/main && echo "
