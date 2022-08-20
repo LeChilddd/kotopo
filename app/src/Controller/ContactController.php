@@ -8,6 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
@@ -35,6 +38,19 @@ class ContactController extends AbstractController
 
             $manager->persist($contact);
             $manager->flush();
+
+            # email
+            $transport = Transport::fromDsn('smtp://localhost:1025');
+            $mailer = new Mailer($transport);
+
+            $email = (new Email())
+                ->from($contact->getEmail())
+                ->to('admin@kotopo.com')
+                ->subject($contact->getSubject())
+                ->html($contact->getMessage());
+
+            $mailer->send($email);
+
 
             $this->addFlash(
                 'success',
