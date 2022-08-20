@@ -8,8 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\Mailer;
-use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,7 +17,9 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(
         Request $request,
-        EntityManagerInterface $manager
+        EntityManagerInterface $manager,
+        MailerInterface $mailer
+
     ): Response
     {
         $contact = new Contact();
@@ -39,9 +40,6 @@ class ContactController extends AbstractController
             $manager->persist($contact);
             $manager->flush();
 
-            # email
-            $transport = Transport::fromDsn('smtp://localhost:59340');
-            $mailer = new Mailer($transport);
 
             $email = (new Email())
                 ->from($contact->getEmail())

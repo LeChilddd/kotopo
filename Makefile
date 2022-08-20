@@ -11,4 +11,34 @@ help:
 install: ## Fresh install of all containers
 	git config core.hooksPath ./.git-tools
 	cat .git-tools/aliases >> .git/config
+	make install-app
+
+.PHONY: install-app
+install-app:
+	make images
+	make init-deps
+	make init-db
+
+.PHONY: up
+up:
+	docker-compose up -d --force-recreate
+	make init-deps
+	make init-db
+
+.PHONY: images
+images:
+	docker-compose up -d --force-recreate --build
+
+.PHONY: init-deps
+init-deps:
+	bin/composer update
+	bin/yarn install
+
+.PHONY: init-db
+init-db:
+	docker-compose run --rm php php bin/console doctrine:database:create --if-not-exists || true
+	docker-compose exec -T php php bin/console doctrine:migrations:migrate -n | ccze -m ansi
+
+
+
 
