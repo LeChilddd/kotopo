@@ -43,3 +43,6 @@ bin/doctrine schema:validate
 bin/make migration
 bin/doctrine migrations:migrate
 ```
+
+## Test mail 
+http://localhost:59341/

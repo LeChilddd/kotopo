@@ -10,6 +10,9 @@ volumes:
   db_data:
 
 services:
+  mailer:
+    image: mailhog/mailhog
+    ports: [ 1025, 8025 ]
   traefik:
     image: traefik:latest
     container_name: traefik

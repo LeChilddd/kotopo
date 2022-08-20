@@ -40,7 +40,7 @@ class ContactController extends AbstractController
             $manager->flush();
 
             # email
-            $transport = Transport::fromDsn('smtp://localhost:1025');
+            $transport = Transport::fromDsn('smtp://localhost:59340');
             $mailer = new Mailer($transport);
 
             $email = (new Email())
