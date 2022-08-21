@@ -21,8 +21,7 @@ class RegistrationController extends AbstractController
         UserPasswordHasherInterface $userPasswordHasher,
         UserAuthenticatorInterface $userAuthenticator,
         UserAuthentificatorAuthenticator $authenticator,
-        EntityManagerInterface $entityManager
-    ): Response
+        EntityManagerInterface $entityManager): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);

@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
@@ -19,27 +21,39 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private string $email;
+    #[Assert\Email]
+    #[Assert\Length(min: 2, max: 180)]
+    private ?string $email = null;
 
     #[ORM\Column(type: 'json')]
+    #[Assert\NotNull]
     private array $roles = [];
 
+    private ?string $plainPassword = null;
+
     #[ORM\Column(type: 'string')]
-    private string $password;
+    #[Assert\NotBlank]
+    private ?string $password = 'pass';
 
     #[ORM\Column(type: 'integer', unique: true)]
+    #[Assert\Length(min: 8, max: 8)]
     private int $cardNumber;
 
     #[ORM\Column(type: 'string', length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 100)]
     private string $firstname;
 
     #[ORM\Column(type: 'string', length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(min: 2, max: 100)]
     private string $lastname;
 
     #[ORM\Column(type: 'string', length: 25)]
+    #[Assert\Length(min: 1, max: 25)]
     private string $gender;
 
     #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membership::class, cascade: ['persist', 'remove'])]
@@ -58,13 +72,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $userSessions;
 
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?DateTimeImmutable $createdAt;
+    #[Assert\NotNull]
+    private ?DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?DateTimeInterface $lastLogin;
+    #[Assert\NotNull]
+    private ?DateTimeInterface $lastLogin = null;
 
-    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private ?DateTimeImmutable $expiredAt;
+    private ?DateTimeImmutable $expiredAt = null;
+
+/*    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[Assert\NotNull]
+    private ?DateTimeImmutable $expiredAt = null;*/
 
     public function __construct()
     {
@@ -72,9 +91,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->invoices = new ArrayCollection();
         $this->sessions = new ArrayCollection();
         $this->userSessions = new ArrayCollection();
+        $this->setRoles(["ROLE_USER"]);
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLogin = new \DateTime();
-        $this->expiredAt = new \DateTimeImmutable();
+/*        $this->expiredAt = new \DateTimeImmutable();*/
 
     }
 
@@ -357,7 +377,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getExpiredAt(): ?DateTimeImmutable
+    /**
+     * @return string|null
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+  /*  public function getExpiredAt(): ?DateTimeImmutable
     {
         return $this->expiredAt;
     }
@@ -367,5 +403,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->expiredAt = $expiredAt;
 
         return $this;
-    }
+    }*/
 }
