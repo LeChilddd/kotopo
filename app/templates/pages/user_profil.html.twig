@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kotopo - Profil utilisateur{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Mon profil</h1>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success mt-4">
+            {{ message }}
+        </div>
+    {% endfor %}
+ 
+    {{ form(form) }}
+
+</div>
+{% endblock %}
