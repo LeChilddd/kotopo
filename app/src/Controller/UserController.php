@@ -3,48 +3,41 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\UserPasswordType;
-use App\Form\UserType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use App\Form\{UserPasswordType, UserType};
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\{HttpFoundation\Request,
+    HttpFoundation\Response,
+    PasswordHasher\Hasher\UserPasswordHasherInterface,
+    Routing\Annotation\Route};
 
 class UserController extends AbstractController
 {
     /**
-     * @param User $user
+     * @param User $choosenUser
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @param UserPasswordHasherInterface $hasher
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/user_profil/{id}', name: 'update_profil', methods: ['GET', 'POST'])]
     public function updateProfil(
-        User $user,
+        User $choosenUser,
         Request $request,
         EntityManagerInterface $manager,
         UserPasswordHasherInterface $hasher
     ): Response
     {
-        if(!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        if($this->getUser() !== $user) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserType::class, $choosenUser);
 
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            if ($hasher->isPasswordValid($user, $form->getData()->getPlainPassword())){
+            if ($hasher->isPasswordValid($choosenUser, $form->getData()->getPlainPassword())){
                 $user = $form->getData();
                 $manager->persist($user);
-                $manager->flush($user);
+                $manager->flush();
 
                 $this->addFlash(
                     'success',
@@ -65,39 +58,33 @@ class UserController extends AbstractController
     }
 
     /**
-     * @param User $user
+     * @param User $choosenUser
      * @param Request $request
      * @param UserPasswordHasherInterface $hasher
      * @param EntityManagerInterface $manager
      * @return Response
      */
+    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/user_password/{id}', 'update.password', methods: ['GET', 'POST'])]
     public function updatePassword(
-        User $user,
+        User $choosenUser,
         Request $request,
         UserPasswordHasherInterface $hasher,
         EntityManagerInterface $manager,
     ): Response {
-        if(!$this->getUser()) {
-            return $this->redirectToRoute('app_login');
-        }
-
-        if($this->getUser() !== $user) {
-            return $this->redirectToRoute('app_login');
-        }
 
         $form = $this->createForm(UserPasswordType::class);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
-            if($hasher->isPasswordValid($user, $form->getData()['plainPassword'])){
-                $user->setLastLogin(new \DateTime());
-                $user->setPlainPassword(
+            if($hasher->isPasswordValid($choosenUser, $form->getData()['plainPassword'])){
+                $choosenUser->setLastLogin(new \DateTime());
+                $choosenUser->setPlainPassword(
                     $form->getData()['newPassword']
                 );
 
-                $manager->persist($user);
-                $manager->flush($user);
+                $manager->persist($choosenUser);
+                $manager->flush();
 
                 $this->addFlash(
                     'success',
@@ -111,7 +98,6 @@ class UserController extends AbstractController
                 );
             }
         }
-
 
         return $this->render('pages/update_password.html.twig', [
             'form' => $form->createView()
