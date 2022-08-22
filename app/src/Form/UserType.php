@@ -52,20 +52,20 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('gender',TextType::class, [
-        'attr' => [
-            'class' => 'form-control',
-            'minlength' => 1,
-            'maxlength' => 25
-        ],
-        'label' => 'Genre',
-        'label_attr' => [
-            'class' => 'form-label mt-4'
-        ],
-        'constraints' => [
-            new Assert\Length(['min' => 2, 'max' => 100]),
-            new Assert\NotBlank(),
-        ]
-    ])
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => 1,
+                    'maxlength' => 25
+                ],
+                'label' => 'Genre',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['min' => 2, 'max' => 100]),
+                    new Assert\NotBlank(),
+                ]
+             ])
 
             ->add('email', EmailType::class, [
                 'attr' => [
@@ -84,24 +84,28 @@ class UserType extends AbstractType
                 ]
             ])
 
-
-
-
             ->add('cardNumber',NumberType::class, [
-        'attr' => [
-            'class' => 'form-control',
-            'minlength' => 8,
-            'maxlength' => 8
-        ],
-        'label' => 'Numéro de carte',
-        'label_attr' => [
-            'class' => 'form-label mt-4'
-        ],
-        'constraints' => [
-            new Assert\Length(['min' => 8, 'max' => 8]),
-            new Assert\NotBlank(),
-        ]
-    ])
+                'attr' => [
+                    'class' => 'form-control',
+                    'minlength' => 8,
+                    'maxlength' => 8
+                ],
+                'label' => 'Numéro de carte',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+                'constraints' => [
+                    new Assert\Length(['min' => 8, 'max' => 8]),
+                    new Assert\NotBlank(),
+                ]
+            ])
+            ->add('plainPassword',PasswordType::class, [
+                'attr' => [ 'class' => 'form-control'],
+                'label' => 'Mot de passe',
+                'label_attr' => [
+                    'class' => 'form-label mt-4'
+                ],
+            ])
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-primary mt-4'

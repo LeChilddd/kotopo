@@ -80,11 +80,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotNull]
     private ?DateTimeInterface $lastLogin = null;
 
-    private ?DateTimeImmutable $expiredAt = null;
-
-/*    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
+    #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     #[Assert\NotNull]
-    private ?DateTimeImmutable $expiredAt = null;*/
+    private ?DateTimeImmutable $expiredAt = null;
 
     public function __construct()
     {
@@ -95,7 +93,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->setRoles(["ROLE_USER"]);
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLogin = new \DateTime();
-/*        $this->expiredAt = new \DateTimeImmutable();*/
+        $this->expiredAt = new \DateTimeImmutable();
 
     }
 
@@ -394,7 +392,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->plainPassword = $plainPassword;
     }
 
-  /*  public function getExpiredAt(): ?DateTimeImmutable
+    public function getExpiredAt(): ?DateTimeImmutable
     {
         return $this->expiredAt;
     }
@@ -404,5 +402,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->expiredAt = $expiredAt;
 
         return $this;
-    }*/
+    }
 }
