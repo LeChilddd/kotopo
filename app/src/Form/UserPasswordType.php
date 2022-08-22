@@ -18,6 +18,9 @@ class UserPasswordType extends AbstractType
             ->add('plainPassword', PasswordType::class,[
                 'attr' => [ 'class' => 'form-control'],
                 'label' => 'Ancien mot de passe',
+                'label_attr' => [
+                    'class' => 'mt-4'
+                ],
 
                 'constraints' =>[new Assert\NotBlank()]
             ])
@@ -26,8 +29,17 @@ class UserPasswordType extends AbstractType
                 'options' => ['attr' => ['class' => 'form-control']],
                 'invalid_message' => 'Les mots de passe ne sont pas identiques',
                 'required' => true,
-                'first_options'  => ['label' => 'Nouveau mot de passe'],
-                'second_options' => ['label' => 'Confirmer le mot de passe'],
+                'first_options'  => [
+                    'label' => 'Nouveau mot de passe',
+                    'label_attr' => [
+                        'class' => 'mt-4'
+                    ],
+                ],
+                'second_options' => [
+                    'label' => 'Confirmer le mot de passe',
+                    'label_attr' => [
+                        'class' => 'mt-4'
+                    ],],
             ])
 
             ->add('submit', SubmitType::class, [
