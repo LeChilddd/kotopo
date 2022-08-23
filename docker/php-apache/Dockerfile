@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
 	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd
 
+RUN docker-php-ext-configure intl
 # récupère l'extension nécessaire pour docker
-RUN docker-php-ext-install zip mysqli pdo pdo_mysql
+RUN docker-php-ext-install zip mysqli pdo pdo_mysql intl
 
 WORKDIR /var/www/kotopo
 
