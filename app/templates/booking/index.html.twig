@@ -2,23 +2,29 @@
 
 {% block title %}Booking index{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('eventListing') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('eventListing') }}
+{% endblock %}
+
 {% block body %}
     <h1>Booking index</h1>
 
-    <table class="table">
+    <table class="table datatables-custom">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>BeginAt</th>
-                <th>EndAt</th>
-                <th>Title</th>
-                <th>actions</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Intitulé</th>
+                <th data-searchable="false" data-orderable="false">Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for booking in bookings %}
             <tr>
-                <td>{{ booking.id }}</td>
                 <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ booking.title }}</td>
@@ -37,3 +43,4 @@
 
     <a href="{{ path('app_booking_new') }}">Create new</a>
 {% endblock %}
+

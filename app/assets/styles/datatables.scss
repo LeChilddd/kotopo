@@ -1,0 +1,115 @@
+div.dataTables_wrapper div.dataTables_length label {
+  margin-left: 1rem;
+}
+
+div.dataTables_wrapper div.dataTables_length label {
+  margin-left: 1rem;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+  width: 4.5rem;
+}
+
+div.dataTables_wrapper div.dataTables_length .select2-container {
+  width: 4.5rem !important;
+}
+
+table.dataTable > thead .sorting:before,
+table.dataTable > thead .sorting_asc:before,
+table.dataTable > thead .sorting_desc:before,
+table.dataTable > thead .sorting_asc_disabled:before,
+table.dataTable > thead .sorting_desc_disabled:before {
+  top: 0.5em;
+}
+
+#listing {
+  width: 100% !important;
+}
+
+.listing_container_overflow {
+  overflow-x: scroll !important;
+}
+
+.dataTables_wrapper {
+  margin: 2.5rem 0;
+}
+
+#listing_length {
+  margin-bottom: 1rem;
+  label {
+    display: flex;
+    align-items: center;
+  }
+  select {
+    margin: 0 0.5rem;
+    width: 5rem;
+    height: 40px;
+  }
+  option {
+    height: 40px;
+  }
+}
+
+#listing_filter {
+  margin-bottom: 1rem;
+  label {
+    display: flex;
+    align-items: center;
+  }
+  input {
+    margin: 0 !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    width: 20rem;
+    height: 40px;
+    border: 1px solid #aaa;
+  }
+}
+
+.page-item.active .page-link {
+  z-index: unset !important;
+  background-color: #e65d0e !important;
+  border-color: #e65d0e !important;
+}
+
+.page-link {
+  border-color: #aaa !important;
+  color: black;
+  box-shadow: unset !important;
+}
+
+.page-link:hover {
+  border-color: #aaa !important;
+}
+
+table.dataTable td,
+table.dataTable th {
+  vertical-align: middle;
+}
+
+table.dataTable th {
+  text-transform: uppercase !important;
+  font-size: 0.80rem;
+  margin: auto;
+}
+
+table.dataTable td {
+  height: 3rem !important;
+  padding: 0.75rem !important;
+}
+
+table.dataTable tr .text-sm a{
+  color: #000000b3;
+  letter-spacing: normal;
+}
+
+table.dataTable tr .text-sm a:hover{
+  color: #9e400a;
+}
+
+table.datatables-custom, table.datatables-custom-no-search {
+  opacity: 0;
+  &.loaded {
+    opacity: 1;
+  }
+}
