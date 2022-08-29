@@ -81,7 +81,9 @@ a:hover {
 // FORM
 input[type="password"],
 input[type="email"],
-input[type="text"]{
+input[type="text"],
+input[type="textarea"],
+{
   background-color: $secondary_color;
   border: none;
   border-radius: 25px;

@@ -5,11 +5,28 @@ networks:
     name: mariadb_bridge
   traefik_bridge:
     name: traefik_bridge
+  mailhog_bridge:
+     name: mailhog_bridge
 
 volumes:
   db_data:
 
 services:
+
+  mailer:
+      image: mailhog/mailhog:latest
+      restart: unless-stopped
+      networks:
+        - traefik_bridge
+        - mailhog_bridge
+      labels:
+          traefik.enable: true
+          traefik.http.routers.mailhog.entrypoints: web
+          traefik.http.routers.mailhog.rule: Host(`mailhog.${DOMAIN}`)
+          traefik.http.services.mailhog.loadbalancer.server.port: 8025
+          traefik.docker.network: traefik_bridge
+
+
   traefik:
     image: traefik:latest
     container_name: traefik
@@ -59,6 +76,10 @@ services:
       - DOMAIN=${DOMAIN}
       - BASE_URL=http://${DOMAIN}
       - DATABASE_URL=mysql://root:root@db:3306/kotopo?serverVersion=mariadb-10.8.3
+      - MAILER_DSN=smtp://mailer:1025
+      - MAIL_CONTACT_FROM=contact@kotopo.localhost
+      - MAIL_CONTACT_TO=hello@kotopo.localhost
+
     volumes:
       - ./app:/var/www/kotopo
       - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf

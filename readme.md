@@ -17,13 +17,19 @@ docker-compose up -d --force-recreate --build
 bin/composer update
 ```
 
-## Update environment
+## Update and run frontend environment
 ```
 bin/yarn install
+bin/yarn watch
 ```
 
 ## Database
-To connect to phpmyadmin, in server add 'database', and enter your login.
+To connect to phpmyadmin, in server add 'database', and enter your login.<br/>
+http://myadmin.kotopo.localhost
+```
+User : root
+Password : root
+```
 
 ### To make or modify entity
 ```
@@ -43,3 +49,6 @@ bin/doctrine schema:validate
 bin/make migration
 bin/doctrine migrations:migrate
 ```
+
+## Test mail local 
+http://mailhog.kotopo.localhost/#

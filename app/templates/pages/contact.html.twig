@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kotopo - Contact{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="page-header min-vh-100">
+            <div class="container mx-0 mx-md-8">
+                <div>
+                    <div class="card card-plain text-center">
+                        <h4 class="font-weight-bolder">Formulaire de contact</h4>
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success mt-4">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                        <div class="card-body text-start">
+                            {{ form_start(form) }}
+                            <div class="row align-items-baseline d-flex my-5">
+                                <div class="col-lg">{{ form_row(form.firstname) }}</div>
+                                <div class="col-lg">  {{ form_row(form.lastname) }}</div>
+                                <div class="col-lg">{{ form_row(form.email) }}</div>
+                            </div>
+                            <div class="my-5">{{ form_row(form.subject) }}</div>
+                            <div class="my-5">{{ form_row(form.message) }}</div>
+                            <div class="my-5">{{ form_row(form.submit) }}</div>
+
+
+
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
