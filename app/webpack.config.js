@@ -25,6 +25,7 @@ Encore
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('calendar', './assets/js/view/calendar')
     .copyFiles({
         from: "./assets/img/",
         to: "img/[path][name].[hash:8].[ext]",
