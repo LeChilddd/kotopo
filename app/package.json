@@ -23,12 +23,10 @@
         "@fullcalendar/list": "^5.11.3",
         "@fullcalendar/timegrid": "^5.11.3",
         "@popperjs/core": "^2.11.5",
-        "datatables.net-bs5": "^1.12.1",
-        "datatables.net-buttons": "^2.2.3",
-        "datatables.net-buttons-dt": "^2.2.3",
         "flatpickr": "^4.6.13",
         "jquery": "^3.6.0",
         "sass": "^1.53.0",
-        "sass-loader": "^13.0.2"
+        "sass-loader": "^13.0.2",
+        "gridjs": "^5.1.0"
     }
 }
