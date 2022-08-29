@@ -15,3 +15,4 @@ const bootstrap = require("@assets/argon/js/core/bootstrap.min");
 global.bootstrap = bootstrap;
 
 require("@assets/argon/js/argon-dashboard");
+require('./components/flatpickr');
