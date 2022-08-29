@@ -2,7 +2,7 @@ FROM php:8.1.5-apache as php
 
 USER root
 
-RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev libicu-dev
+RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev libicu-dev git unzip
 RUN docker-php-ext-configure intl
 RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
