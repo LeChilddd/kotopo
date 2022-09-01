@@ -9,39 +9,17 @@
 {% endblock %}
 
 {% block javascripts %}
+    <script>
+        const data = {{ bookings|raw }};
+    </script>
+
     {{ encore_entry_script_tags('eventListing') }}
 {% endblock %}
 
 {% block body %}
     <h1>Booking index</h1>
 
-    <table class="table datatables-custom">
-        <thead>
-            <tr>
-                <th>Date de début</th>
-                <th>Date de fin</th>
-                <th>Intitulé</th>
-                <th data-searchable="false" data-orderable="false">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for booking in bookings %}
-            <tr>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ booking.title }}</td>
-                <td>
-                    <a href="{{ path('app_booking_show', {'id': booking.id}) }}">show</a>
-                    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <table id="custom-datatable"></table>
 
     <a href="{{ path('app_booking_new') }}">Create new</a>
 {% endblock %}

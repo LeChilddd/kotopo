@@ -4,11 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Booking;
 use App\Form\BookingType;
+use App\Service\Booking\BookingDto;
+use App\Services\Booking\BookingEditor;
 use App\Repository\BookingRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/booking')]
 class BookingController extends AbstractController
@@ -16,8 +22,20 @@ class BookingController extends AbstractController
     #[Route('/', name: 'app_booking_index', methods: ['GET'])]
     public function index(BookingRepository $bookingRepository): Response
     {
+        $bookingsList = [];
+        $bookings = $bookingRepository->findAll();
+
+        foreach ($bookings as $booking) {
+            $bookingsList[] = [
+                "idBooking" => $booking->getId(),
+                "beginAt" => $booking->getBeginAt()->format('Y-m-d H:i'),
+                "endAt" => $booking->getEndAt()->format('Y-m-d H:i'),
+                "title" => $booking->getTitle(),
+
+            ];
+        }
         return $this->render('booking/index.html.twig', [
-            'bookings' => $bookingRepository->findAll(),
+            'bookings' => json_encode($bookingsList),
         ]);
     }
 
@@ -80,6 +98,16 @@ class BookingController extends AbstractController
     public function calendar(): Response
     {
         return $this->render('booking/calendar.html.twig');
+    }
+
+
+    #[Route('/api/edit/{id}', name: 'api_booking_edit', methods: ['POST', 'GET'])]
+    #[ParamConverter('booking', class: Booking::class)]
+    public function bookingEdit(Request $request, Booking $booking ,BookingEditor $editor): JsonResponse
+    {
+     $content = json_decode($request->getContent(), true);
+     return new JsonResponse($editor->updateUserProfile($booking, $content));
+
     }
 
 }

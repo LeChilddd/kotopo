@@ -1,7 +1,13 @@
-import {DataTable} from "simple-datatables"
+import {Grid} from "gridjs"
+require("gridjs/dist/theme/mermaid.min.css")
 
-$(document).ready( function () {
-    const dataTable = new DataTable(".datatables-custom", {
-        searchable: true,
-    });
-});
+new Grid({
+    pagination:true,
+    sort:true,
+    data: data,
+    style: {
+        table: {
+            width : '100%',
+        },
+    }
+}).render(document.getElementById("custom-datatable"));

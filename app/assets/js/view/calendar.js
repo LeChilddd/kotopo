@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             },
         ],
+        eventDrop: function(info) {
+            modifyEvent(info.event)
+        },
+        eventResize: function(info) {
+            modifyEvent(info.event)
+        },
         headerToolbar: {
             left: "prev,next today",
             center: "title",
@@ -39,3 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     calendar.render();
 });
+
+function modifyEvent(event) {
+    console.log(event)
+    let eventId = event.url.charAt(event.url.length - 1)
+    let start = event.start;
+    let end = event.end;
+    let url = "/booking/api/edit/" + eventId;
+    console.log(start.toISOString(),end.toISOString());
+    $.ajax({
+        type:"POST",
+        url: url,
+        data: JSON.stringify({"beginAt" : start, "endAt" : end}),
+        headers: {
+            "Content-Type": "application/json",
+        },
+        success:function(msg){
+        },
+        error:function(msg){
+            console.log(msg);
+            alert('We are unable to process your request');
+        }
+    });
+}
