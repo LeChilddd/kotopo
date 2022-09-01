@@ -21,7 +21,7 @@ RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN curl -sS https://get.symfony.com/cli/installer | bash
-RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
