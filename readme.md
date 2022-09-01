@@ -3,9 +3,9 @@
 ## Needed
 Docker
 
-## Run
+## To install app
 ```
-docker-compose up -d
+make install
 ```
 Open your Browser at `kotopo.localhost`
 Accept the auto-generated TLS certificate
@@ -15,6 +15,12 @@ If necessary stop container, recreate them and update composer
 docker-compose down --remove-orphans
 docker-compose up -d --force-recreate --build
 bin/composer update
+```
+
+### To start app of after changing branch
+To restart app and download the needed library
+```
+make up
 ```
 
 ## Update and run frontend environment
