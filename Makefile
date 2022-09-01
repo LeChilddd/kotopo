@@ -39,6 +39,9 @@ init-db:
 	docker-compose run --rm php php bin/console doctrine:database:create --if-not-exists || true
 	docker-compose exec -T php php bin/console doctrine:migrations:migrate -n | ccze -m ansi
 
+.PHONY: db-drop
+db-drop:
+	docker-compose run --rm php php bin/console doctrine:database:drop --force || true
 
 
 
