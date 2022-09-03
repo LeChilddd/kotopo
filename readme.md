@@ -54,6 +54,14 @@ bin/doctrine schema:validate
 ```
 bin/make migration
 bin/doctrine migrations:migrate
+
+# Drop database
+bin/doctrine d:d --force
+```
+### DataFixtures
+```
+# load fixtures : 
+bin/doctrine f:l
 ```
 
 ## Test mail local 

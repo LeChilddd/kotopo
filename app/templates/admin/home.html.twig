@@ -12,6 +12,11 @@
             <h1>
                 Bienvenue au KOTOPO
             </h1>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success mt-4">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="info text-center m-5 p-3">Pour soutenir le KOTOPO, l’appel à dons est toujours d’actualité!
                 L’intégralité de votre participation ira à l’association, la plateforme de dons ne prend pas de pourcentage.
                 Pour nous soutenir, cliquez ici .

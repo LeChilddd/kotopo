@@ -20,6 +20,10 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
 
+    App\EntityListener\:
+      resource: '../src/EntityListener/'
+      tags: [ 'doctrine.orm.entity_listener' ]
+
     app.menu_builder:
         class: App\Menu\MenuBuilder
         arguments: [ "@knp_menu.factory" ]

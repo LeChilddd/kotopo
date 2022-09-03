@@ -1,2 +1,5 @@
 {
+    "require-dev": {
+        "fakerphp/faker": "^1.20"
+    }
 }
