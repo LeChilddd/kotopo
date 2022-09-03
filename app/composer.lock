@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a369ecc81ef4b1cf3f4853df07c312ad",
+    "content-hash": "1c124b6517a8d417716e404b271cf5b2",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1478,16 +1478,16 @@
         },
         {
             "name": "easycorp/easyadmin-bundle",
-            "version": "v4.3.4",
+            "version": "v4.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
-                "reference": "10357b0ee790d0ba5ac8be09b650d02bafd233d4"
+                "reference": "e124455a9b86b6b02510863c64c78a5a04ac7775"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/10357b0ee790d0ba5ac8be09b650d02bafd233d4",
-                "reference": "10357b0ee790d0ba5ac8be09b650d02bafd233d4",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/e124455a9b86b6b02510863c64c78a5a04ac7775",
+                "reference": "e124455a9b86b6b02510863c64c78a5a04ac7775",
                 "shasum": ""
             },
             "require": {
@@ -1554,7 +1554,7 @@
             ],
             "support": {
                 "issues": "https://github.com/EasyCorp/EasyAdminBundle/issues",
-                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.3.4"
+                "source": "https://github.com/EasyCorp/EasyAdminBundle/tree/v4.3.5"
             },
             "funding": [
                 {
@@ -1562,7 +1562,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-07-21T17:38:52+00:00"
+            "time": "2022-09-02T18:11:50+00:00"
         },
         {
             "name": "egulias/email-validator",
@@ -3388,6 +3388,69 @@
                 }
             ],
             "time": "2022-02-25T11:15:52+00:00"
+        },
+        {
+            "name": "symfony/expression-language",
+            "version": "v6.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/expression-language.git",
+                "reference": "065e2822becae1f518455fb7775eb909672acc99"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/065e2822becae1f518455fb7775eb909672acc99",
+                "reference": "065e2822becae1f518455fb7775eb909672acc99",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.2",
+                "symfony/cache": "^5.4|^6.0",
+                "symfony/service-contracts": "^1.1|^2|^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\ExpressionLanguage\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides an engine that can compile and evaluate expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/expression-language/tree/v6.0.11"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-07-20T13:45:53+00:00"
         },
         {
             "name": "symfony/filesystem",

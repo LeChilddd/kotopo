@@ -32,7 +32,7 @@ class AppFixtures extends Fixture
                 ->setGender('M')
                 ->setRoles(['ROLE_USER'])
                 ->setEmail('user'. $i+1 .'@user.com')
-                ->setPleinPassword('pass')
+                ->setPlainPassword('pass')
             ;
             $manager->persist($user);
         }
