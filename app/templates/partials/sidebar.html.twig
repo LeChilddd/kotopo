@@ -1,18 +1,17 @@
-<aside class="scrollbar sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4" id="sidenav-main">
-    <div class="sidenav-header">
-        <i class="fa-solid fa-burger p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-xl-none" aria-hidden="true" id="iconSidenav"></i>
-        <a class="navbar-brand m-0" href="{{ path('app_home') }}">
-            <i class="fa-solid fa-x"></i>
-            <span class="ms-1 font-weight-bold">Kotopo</span>
-        </a>
-    </div>
-    <div class="collapse navbar-collapse w-auto h-auto h-100" id="sidenav-collapse-main">
-        <ul class="navbar-nav">
-            {{ knp_menu_render('menu_aside', {
-                currentClass: 'active',
-                'allow_safe_labels': true
-            }
-            )}}
-        </ul>
+<aside class="scrollbar sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 mt-8 bd-navbar bg-transparent" id="sidenav-main">
+
+    <div class="collapse navbar-collapse w-auto h-auto h-100 text-center m-3" id="sidenav-collapse-main">
+        <p class="font-weight-bold my-3"><u>À venir :</u></p>
+        <p>Ce soir : -mon évènement-</p>
+        <p>Demain : -mon évènement-</p>
+        <div>
+            <p class="font-weight-bold my-3"><u>Horaires d'ouverture</u></p>
+            <p>du lun au jeu</p>
+            <p>18h</p>
+            <p>ven et sam</p>
+            <p>18h</p>
+            <p class="font-weight-bold my-3">Les ateliers calligraphie débutent à 17h30</p>
+        </div>
+
     </div>
 </aside>
