@@ -13,7 +13,7 @@ class PdfService
 
         $options = new Options();
         $options-> set('defaultFont', 'Open Sans');
-        
+
         $this->domPdf = new DomPdf($options);
         $this->domPdf->setPaper('A4', 'portrait');
     }
