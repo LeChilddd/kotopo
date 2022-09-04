@@ -116,18 +116,6 @@
     "psr/log": {
         "version": "3.0.0"
     },
-    "sensio/framework-extra-bundle": {
-        "version": "6.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "5.2",
-            "ref": "fb7e19da7f013d0d422fa9bce16f5c510e27609b"
-        },
-        "files": [
-            "config/packages/sensio_framework_extra.yaml"
-        ]
-    },
     "symfony/asset": {
         "version": "v6.0.7"
     },
@@ -236,18 +224,6 @@
     },
     "symfony/http-kernel": {
         "version": "v6.0.8"
-    },
-    "symfony/mailer": {
-        "version": "6.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "4.3",
-            "ref": "97a61eabb351d7f6cb7702039bcfe07fe9d7e03c"
-        },
-        "files": [
-            "config/packages/mailer.yaml"
-        ]
     },
     "symfony/maker-bundle": {
         "version": "1.40",
