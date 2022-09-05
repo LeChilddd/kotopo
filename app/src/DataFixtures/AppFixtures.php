@@ -9,14 +9,23 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-
-    public function load(
-        ObjectManager $manager): void
+    public function load(ObjectManager $manager): void
     {
-        # User
+        # User Admin
+
+        $admin = new User();
+        $admin->setFirstname('Admin')
+            ->setLastname('ADMIN')
+            ->setCardNumber(mt_rand(00000000, 99999999))
+            ->setGender('M')
+            ->setRoles(['ROLE_USER', 'ROLE_ADMIN'])
+            ->setEmail('admin@admin.com')
+            ->setPlainPassword('pass')
+        ;
+        $manager->persist($admin);
+
         for ($i = 0; $i < 5; $i++){
             $user = new User();
-
             $user->setFirstname('User ' . $i+1)
                 ->setLastname('USERNAME ' . $i+1)
                 ->setCardNumber(mt_rand(00000000, 99999999))

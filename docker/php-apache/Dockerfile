@@ -2,16 +2,14 @@ FROM php:8.1.5-apache as php
 
 USER root
 
-RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev
+RUN apt-get update -y && apt-get install -y libmariadb-dev libzip-dev libicu-dev
+RUN docker-php-ext-configure intl
 RUN apt-get update && apt-get install -y \
 		libfreetype6-dev \
 		libjpeg62-turbo-dev \
 		libpng-dev \
-	&& docker-php-ext-configure gd --with-freetype --with-jpeg \
-	&& docker-php-ext-install -j$(nproc) gd
-
-# récupère l'extension nécessaire pour docker
-RUN docker-php-ext-install zip mysqli pdo pdo_mysql
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+	&& docker-php-ext-install -j$(nproc) gd zip mysqli pdo pdo_mysql intl
 
 WORKDIR /var/www/kotopo
 
