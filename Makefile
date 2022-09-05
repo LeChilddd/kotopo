@@ -31,7 +31,7 @@ images:
 
 .PHONY: init-deps
 init-deps:
-	bin/composer update
+	bin/composer install
 	bin/yarn install
 
 .PHONY: init-db
