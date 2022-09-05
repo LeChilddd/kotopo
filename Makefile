@@ -36,8 +36,15 @@ init-deps:
 
 .PHONY: init-db
 init-db:
-	docker-compose run --rm php php bin/console doctrine:database:create --if-not-exists || true
+	make db-drop
+	docker-compose run --rm php php bin/console doctrine:database:create || true
 	docker-compose exec -T php php bin/console doctrine:migrations:migrate -n | ccze -m ansi
+	make fixtures
+
+.PHONY: fixtures
+fixtures: ## Load doctrine data fixtures
+	docker-compose run --rm php php bin/console doctrine:fixtures:load -n --append | ccze -m ansi
+
 
 .PHONY: db-drop
 db-drop:

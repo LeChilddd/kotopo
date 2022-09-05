@@ -42,7 +42,7 @@
                     <a href="javascript:" class="nav-link dropdown-toggle text-white font-weight-bold px-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
                     </a>
-                    <ul class="dropdown-menu d ropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
                         {% if 'ROLE_ADMIN' in app.user.roles %}
                         <li class="mb-2">
                             <a class="dropdown-item cursor-pointer border-radius-md" href="{{ path('app_admin') }}">
