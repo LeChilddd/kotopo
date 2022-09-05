@@ -25,10 +25,12 @@ li {
 
 // NAVBAR
 nav{
+  background-color: $dark_color;
   .underline {
     padding-bottom: 1em;
     border-bottom: 2px solid $secondary_color;
   }
+
 }
 
 
@@ -62,14 +64,18 @@ a:hover {
     }
   }
 
+.page-header{
+  margin-top: 5em;
+}
+
   // SIDEBAR
-  .sidebar {
+/*  .sidebar {
     max-width: 200px;
     height: 100%;
     p {
       margin-bottom: 0;
     }
-  }
+  }*/
 
   // to uncomment when impmlement calendar
   /*.calendar_header {
@@ -122,11 +128,6 @@ input[type="textarea"],
 .form-row-error ul, form label + ul {
   padding-left: 0;
 
-  li {
-    color: $danger;
-    list-style: none;
-    font-size: 0.8rem;
-  }
 }
 
 .scroll-content {

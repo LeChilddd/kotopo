@@ -14,11 +14,10 @@
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
     </head>
-    <body class="g-sidenav-show">
+    <body class="g-sidenav-show m-0">
+            {{ include('partials/navbar.html.twig') }}
             {{ include('partials/sidebar.html.twig') }}
         <main class="main-content position-relative border-radius-lg">
-            {{ include('partials/navbar.html.twig') }}
-
         <div class="position-relative overflow-auto">
             <div class="body container-fluid d-flex flex-column min-vh-90">
                 {% block body %}{% endblock %}
