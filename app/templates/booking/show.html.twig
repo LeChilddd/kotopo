@@ -3,32 +3,66 @@
 {% block title %}Booking{% endblock %}
 
 {% block body %}
-    <h1>Booking</h1>
+    <section class="m-3 min-height-400">
+        <h1 class="text-center ms-0 mb-3">{{ booking.title }}</h1>
+        <div class="card col-6 m-auto p-4 pb-0 mb-3">
+            <table class="table text-dark">
+                <thead>
+                <tr>
+                    <th>
+                        Date de début
+                    </th>
+                    <th>
+                        Date de fin
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- Button trigger modal -->
+            <div class="row d-flex justify-content-start">
+                <div class="col-auto">
+                    <a role="button" class="btn btn-cta" href="javascript:history.back()">
+                        Retour
+                    </a>
+                </div>
+                <div class="col-auto">
+                    <a role="button" class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
+                        Inscription pour l'événement
+                    </a>
+                </div>
+            </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ booking.id }}</td>
-            </tr>
-            <tr>
-                <th>BeginAt</th>
-                <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndAt</th>
-                <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ booking.title }}</td>
-            </tr>
-        </tbody>
-    </table>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">Éditer</a>
+                {{ include('booking/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    </section>
 
-    <a href="{{ path('app_booking_index') }}">back to list</a>
+    <!-- Modal -->
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="subscriptionModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulaire d'inscription</h5>
+                </div>
+                <div class="modal-body">
+                    {# {{ include('booking/inscription/_form.html.twig') }} #}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn bg-gradient-primary" id="subscriptionBtn">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">edit</a>
 
-    {{ include('booking/_delete_form.html.twig') }}
 {% endblock %}

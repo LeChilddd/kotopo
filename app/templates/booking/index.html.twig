@@ -17,10 +17,12 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Booking index</h1>
+    <h1 class="text-center">Liste des événements</h1>
 
     <table id="custom-datatable"></table>
 
-    <a href="{{ path('app_booking_new') }}">Create new</a>
+    <div class="mb-2 mt-2">
+        <a class="btn btn-cta" href="{{ path('app_booking_new') }}">Ajouter un événements</a>
+    </div>
 {% endblock %}
 

@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('app_booking_new') }}">Create new booking</a>
-
     <div
             id="calendar-holder"
             data-events-url="{{ path('fc_load_events') }}"
-            class="mb-5"
+            class="mb-5 mt-5"
     ></div>
 {% endblock %}
 

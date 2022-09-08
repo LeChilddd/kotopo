@@ -19,7 +19,7 @@ class BookingType extends AbstractType
                 'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd/MM/yyyy - hh:mm',
+                'format' => 'dd/MM/yyyy - H:i',
                 'attr' => [
                     'class' => 'flatpickr_hour form-control mb-3',
                     'autocomplete' => 'off',
@@ -31,7 +31,7 @@ class BookingType extends AbstractType
                 'required' => false,
                 'widget' => 'single_text',
                 'html5' => false,
-                'format' => 'dd/MM/yyyy - hh:mm',
+                'format' => 'dd/MM/yyyy - H:i',
                 'attr' => [
                     'class' => 'flatpickr_hour form-control mb-3',
                     'autocomplete' => 'off',

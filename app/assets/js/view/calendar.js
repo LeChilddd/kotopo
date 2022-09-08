@@ -63,7 +63,6 @@ function modifyEvent(event) {
         success:function(msg){
         },
         error:function(msg){
-            console.log(msg);
             alert('We are unable to process your request');
         }
     });
