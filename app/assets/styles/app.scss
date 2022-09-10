@@ -70,21 +70,13 @@ a:hover {
   margin-top: 5em;
 }
 
-  // SIDEBAR
-/*  .sidebar {
-    max-width: 200px;
-    height: 100%;
-    p {
-      margin-bottom: 0;
-    }
-  }*/
+.card {
+  background-color: $secondary_color;
+}
 
-  // to uncomment when impmlement calendar
-  /*.calendar_header {
-    background-color: $blue_pale_color;
-    border-radius: 8px 8px 0 0;
-    padding: 8px;
-  }*/
+.card-img-top {
+  width: 65px;
+}
 
 // FORM
 input[type="password"],
