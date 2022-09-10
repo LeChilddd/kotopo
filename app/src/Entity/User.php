@@ -94,8 +94,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->setRoles(["ROLE_USER"]);
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLogin = new \DateTime();
-        $this->expiredAt = new \DateTimeImmutable();
-
+        $this->expiredAt = $this->createdAt->add(new \DateInterval("P1Y"));
     }
 
     public function getId(): ?int

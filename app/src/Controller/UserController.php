@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use App\Form\{UserPasswordType, UserType};
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,9 +28,13 @@ class UserController extends AbstractController
         User $choosenUser,
         Request $request,
         EntityManagerInterface $manager,
-        UserPasswordHasherInterface $hasher
+        UserPasswordHasherInterface $hasher,
+        UserRepository $repository,
+        int $id
     ): Response
     {
+        $user = $repository->findOneBy(["id" =>$id]);
+
         $form = $this->createForm(UserType::class, $choosenUser);
 
         $form->handleRequest($request);
@@ -54,8 +59,14 @@ class UserController extends AbstractController
 
         return $this->render('pages/user_profil.html.twig', [
             'form' => $form->createView(),
+            'user' => $user->getExpiredAt()
         ]);
     }
+
+
+
+
+
 
     /**
      * @param User $choosenUser
