@@ -19,10 +19,10 @@ class Language
     private string $name;
 
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: UserLanguageLevel::class)]
-    private ArrayCollection $userLanguageLevels;
+    private Collection $userLanguageLevels;
 
     #[ORM\OneToMany(mappedBy: 'language', targetEntity: Session::class)]
-    private ArrayCollection $sessions;
+    private Collection $sessions;
 
     public function __construct()
     {

@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Language;
 use App\Entity\User;
 use App\Entity\Contact;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -36,6 +37,12 @@ class AppFixtures extends Fixture
             ;
             $manager->persist($user);
         }
+
+        # Languages
+        $language = new Language();
+        $language->setName('Anglais');
+
+        $manager->persist($language);
 
         // Contact
            for ($i = 0; $i < 5; $i++) {
