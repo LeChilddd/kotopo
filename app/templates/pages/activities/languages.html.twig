@@ -1,28 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Kotopo - Activités{% endblock %}
+{% block title %}Hello LanguagesController!{% endblock %}
 
 {% block body %}
 
-<div>
-    <h1>Nos activités</h1>
 
-    <p>Afin de participer à nos activités il faut être adhérent.</p>
+
+<div class="example-wrapper">
+    <h1>Nos cours de langues hebdomadaires</h1>
+
+    <p class="text-center">Durée des séances : 1h30</p>
 
     <div class="container">
         <div class="row">
             <div class="card text-center my-3 col-sm m-sm-5">
-                <a href="{{ path('app_languages') }}">
-                <img class="card-img-top mt-3 mb-3 mx-auto" src="{{ asset('build/img/activity/language.png') }}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Cours de langue  </p>
-                </div>
-                </a>
+                  <div class="card-title font-weight-bold">Allemand</div>
+                    <div class="card-body">
+                        <p class="card-text font-weight-bold">Niveau : A1 </p>
+                        <p class="card-text">Jours : Mardi </p>
+                        <p class="card-text">Horaire : 20h </p>
+                        <hr>
+                        <p class="card-text font-weight-bold">Niveau : A2 </p>
+                        <p class="card-text">Jours : Mardi </p>
+                        <p class="card-text">Horaire : 18h30 </p>
+                    </div>
             </div>
             <div class="card text-center my-3 col-sm m-sm-5">
-                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/librairy.png') }}" alt="Card image cap">
+                <div class="card-title font-weight-bold">Anglais</div>
                 <div class="card-body">
-                    <p class="card-text">Bibliothèque</p>
+                    <p class="card-text font-weight-bold">Niveau : B1 </p>
+                    <p class="card-text">Jours : Lundi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
+                    <hr>
+                    <p class="card-text font-weight-bold">Niveau : B2 </p>
+                    <p class="card-text">Jours : Jeudi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
             <div class="card text-center my-3 col-sm m-sm-5">
@@ -53,8 +65,5 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 {% endblock %}
