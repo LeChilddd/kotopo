@@ -7,6 +7,7 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
@@ -37,6 +38,7 @@ class Session
     {
         $this->userSessions = new ArrayCollection();
         $this->lessonInvoices = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int

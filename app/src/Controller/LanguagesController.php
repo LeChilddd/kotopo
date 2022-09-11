@@ -11,13 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class LanguagesController extends AbstractController
 {
     #[Route('/languages', name: 'app_languages')]
-    public function index(SessionRepository $repository): Response
+    public function language(LanguageRepository $repository): Response
     {
-        $session = $repository->findAll();
-        dd($session);
+
+        $languages = [
+            'anglais',
+            'allemand',
+        ];
+
+/*        dd($languages);*/
 
         return $this->render('pages/activities/languages.html.twig', [
-            'controller_name' => 'LanguagesController',
+            'languages' => $repository->findAll(),
         ]);
     }
 }

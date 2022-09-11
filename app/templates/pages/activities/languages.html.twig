@@ -11,10 +11,10 @@
 
     <p class="text-center">Durée des séances : 1h30</p>
 
-    <div class="container">
-        <div class="row">
-            <div class="card text-center my-3 col-sm m-sm-5">
-                  <div class="card-title font-weight-bold">Allemand</div>
+    <div class="container d-flex row">
+        {% for language in languages %}
+            <div class="card text-center  my-3 col-md m-md-1">
+                  <div class="card-title font-weight-bold ">{{ language.name| upper }}</div>
                     <div class="card-body">
                         <p class="card-text font-weight-bold">Niveau : A1 </p>
                         <p class="card-text">Jours : Mardi </p>
@@ -25,8 +25,11 @@
                         <p class="card-text">Horaire : 18h30 </p>
                     </div>
             </div>
-            <div class="card text-center my-3 col-sm m-sm-5">
-                <div class="card-title font-weight-bold">Anglais</div>
+        {% endfor %}
+{#
+        <div class="row">
+            <div class="card text-center my-3 col-md m-md-5">
+                <div class="card-title font-weight-bold text-uppercase">Anglais</div>
                 <div class="card-body">
                     <p class="card-text font-weight-bold">Niveau : B1 </p>
                     <p class="card-text">Jours : Lundi </p>
@@ -37,33 +40,57 @@
                     <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
-            <div class="card text-center my-3 col-sm m-sm-5">
-                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/meeting.png') }}" alt="Card image cap">
+            <div class="card text-center my-3 col-md m-md-5">
+                <div class="card-title font-weight-bold text-uppercase">Arabe moderne</div>
                 <div class="card-body">
-                    <p class="card-text">Rencontre linguistique</p>
+                    <p class="card-text font-weight-bold">Niveau : B1 </p>
+                    <p class="card-text">Jours : Lundi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
+                    <hr>
+                    <p class="card-text font-weight-bold">Niveau : B2 </p>
+                    <p class="card-text">Jours : Jeudi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="card text-center my-3 col-sm m-sm-5">
-                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/bar.png') }}" alt="Card image cap">
+            <div class="card text-center my-3 col-md m-md-5">
+                <div class="card-title font-weight-bold text-uppercase">Allemand</div>
                 <div class="card-body">
-                    <p class="card-text">Bar</p>
+                    <p class="card-text font-weight-bold">Niveau : A1 </p>
+                    <p class="card-text">Jours : Mardi </p>
+                    <p class="card-text">Horaire : 20h </p>
+                    <hr>
+                    <p class="card-text font-weight-bold">Niveau : A2 </p>
+                    <p class="card-text">Jours : Mardi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
-            <div class="card text-center my-3 col-sm m-sm-5">
-                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/calligraphy.png') }}" alt="Card image cap">
+            <div class="card text-center my-3 col-md m-md-5">
+                <div class="card-title font-weight-bold text-uppercase">Berbère kabyle</div>
                 <div class="card-body">
-                    <p class="card-text">Atelier calligraphie</p>
+                    <p class="card-text font-weight-bold">Niveau : B1 </p>
+                    <p class="card-text">Jours : Lundi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
+                    <hr>
+                    <p class="card-text font-weight-bold text-uppercase">Niveau : B2 </p>
+                    <p class="card-text">Jours : Jeudi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
-            <div class="card text-center my-3 col-sm m-sm-5">
-                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/d20.png') }}" alt="Card image cap">
+            <div class="card text-center my-3 col-md m-md-5">
+                <div class="card-title font-weight-bold">Chinois</div>
                 <div class="card-body">
-                    <p class="card-text">Ludothèque</p>
+                    <p class="card-text font-weight-bold">Niveau : B1 </p>
+                    <p class="card-text">Jours : Lundi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
+                    <hr>
+                    <p class="card-text font-weight-bold">Niveau : B2 </p>
+                    <p class="card-text">Jours : Jeudi </p>
+                    <p class="card-text">Horaire : 18h30 </p>
                 </div>
             </div>
-        </div>
+        </div>#}
     </div>
 </div>
 {% endblock %}

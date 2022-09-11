@@ -13,8 +13,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        # User Admin
-
+        # Users
         $admin = new User();
         $admin->setFirstname('Admin')
             ->setLastname('ADMIN')
@@ -25,6 +24,17 @@ class AppFixtures extends Fixture
             ->setPlainPassword('pass')
         ;
         $manager->persist($admin);
+
+        $teacher = new User();
+        $teacher->setFirstname('Teacher')
+            ->setLastname('T')
+            ->setCardNumber(mt_rand(00000000, 99999999))
+            ->setGender('M')
+            ->setRoles(['ROLE_USER'])
+            ->setEmail('teach@teach.com')
+            ->setPlainPassword('pass')
+        ;
+        $manager->persist($teacher);
 
         for ($i = 0; $i < 5; $i++){
             $user = new User();
@@ -39,17 +49,18 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
+        # Languages
+            $language = new Language();
+            $language->setName('Anglais');
 
-  /*      $language = new Language();
-        $language->setName('Anglais');
+            $manager->persist($language);
 
-        $manager->persist($language);
 
-        $lesson = new Session();
-        $lesson->setLanguage(1)
-            ->setUserTeacher(1)
-            ->setDate();*/
-
+        /*$dateTime = \DateTime::createFromFormat()
+        # Session
+        $session = new Session();
+        $session->setDate( 	2022-09-11);
+*/
 
 
             // Contact
