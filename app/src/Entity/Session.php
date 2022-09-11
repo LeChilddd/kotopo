@@ -25,10 +25,10 @@ class Session
     private ?User $userTeacher;
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: UserSession::class)]
-    private ArrayCollection $userSessions;
+    private Collection $userSessions;
 
     #[ORM\OneToMany(mappedBy: 'session', targetEntity: LessonInvoice::class)]
-    private ArrayCollection $lessonInvoices;
+    private Collection $lessonInvoices;
 
     #[ORM\Column(type: 'datetime')]
     private ?DateTimeInterface $date;
