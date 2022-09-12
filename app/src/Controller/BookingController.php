@@ -49,6 +49,9 @@ class BookingController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            ($recurrenceEnd = $form->get('length')->getData())
+            && dd(floor($booking->getBeginAt()->diff($recurrenceEnd)->days/7));
+
             $bookingRepository->add($booking, true);
 
             return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);

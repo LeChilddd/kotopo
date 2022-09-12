@@ -38,6 +38,19 @@ class BookingType extends AbstractType
                     'placeholder' => "jj/mm/aaaa - hh:mn"
                 ]
             ])
+            ->add('length',DateTimeType::class, [
+                'label' => 'fin la récurrence',
+                'required' => false,
+                'widget' => 'single_text',
+                'mapped' => false,
+                'html5' => false,
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
+                    'class' => 'flatpickr form-control mb-3',
+                    'autocomplete' => 'off',
+                    'placeholder' => "jj/mm/aaaa"
+                ]
+            ])
             ->add('title', TextType::class, [
                 'label' => "Intitulé de l'événement",
                 'attr' => [
