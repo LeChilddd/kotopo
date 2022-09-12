@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Kotopo - Activités{% endblock %}
+
+{% block body %}
+
+<div>
+    <h1>Nos activités</h1>
+
+    <p>Afin de participer à nos activités il faut être adhérent.</p>
+
+    <div class="container">
+        <div class="row">
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <a href="{{ path('app_languages') }}">
+                <img class="card-img-top mt-3 mb-3 mx-auto" src="{{ asset('build/img/activity/language.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Cours de langue  </p>
+                </div>
+                </a>
+            </div>
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/librairy.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Bibliothèque</p>
+                </div>
+            </div>
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/meeting.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Rencontre linguistique</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/bar.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Bar</p>
+                </div>
+            </div>
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/calligraphy.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Atelier calligraphie</p>
+                </div>
+            </div>
+            <div class="card text-center my-3 col-sm m-sm-5">
+                <img class="card-img-top mt-3 mx-auto" src="{{ asset('build/img/activity/d20.png') }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Ludothèque</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+{% endblock %}
