@@ -1,0 +1,24 @@
+<div class="col-12 col-lg-8 m-auto">
+    {{ form_start(form, {'attr': {'class': 'mb-6'}}) }}
+    <!--single form panel-->
+    <div class="card shadow-none p-3 border-radius-xl bg-transparent">
+        <div>
+            <div class="row mt-3">
+                <div class="col-12 col-sm-6">
+                    {{ form_row(form.beginAt) }}
+                </div>
+                <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                    {{ form_row(form.endAt) }}
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    {{ form_row(form.title) }}
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-cta mt-5">{{ button_label|default('Save') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+

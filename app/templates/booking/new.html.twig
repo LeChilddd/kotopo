@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Événement{% endblock %}
+
+{% block body %}
+    <div class="mt-5">
+        <h1 class="text-center ms-0">Création d'un événement</h1>
+    </div>
+
+    {{ include('booking/_form.html.twig') }}
+
+    <a href="{{ path('app_booking_index') }}">back to list</a>
+{% endblock %}

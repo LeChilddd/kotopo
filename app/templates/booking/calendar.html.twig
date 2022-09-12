@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div
+            id="calendar-holder"
+            data-events-url="{{ path('fc_load_events') }}"
+            class="mb-5 mt-5"
+    ></div>
+{% endblock %}
+
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('calendar') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('calendar') }}
+{% endblock %}

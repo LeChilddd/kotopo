@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('eventListing') }}
+{% endblock %}
+
+{% block body %}
+    <section class="m-3 min-height-400">
+        <h1 class="text-center ms-0 mb-3">{{ booking.title }}</h1>
+        <div class="card col-6 m-auto p-4 pb-0 mb-3">
+            <table class="table text-dark">
+                <thead>
+                <tr>
+                    <th>
+                        Date de début
+                    </th>
+                    <th>
+                        Date de fin
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- Button trigger modal -->
+            <div class="row d-flex justify-content-between">
+                <div class="col-auto">
+                    <a role="button" class="btn btn-cta" href="javascript:history.back()">
+                        Retour
+                    </a>
+                    <a role="button" class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
+                        Inscription pour l'événement
+                    </a>
+                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="col-auto d-inline-flex">
+                        <a role="button" class="btn btn-info btn-rounded me-1"
+                           href="{{ path('app_booking_edit', {'id': booking.id}) }}">
+                            Éditer
+                        </a>
+                        {{ include('booking/_delete_form.html.twig') }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    {% if is_granted('ROLE_ADMIN') %}
+        <section>
+            <h2 class="text-center">Liste des inscriptions</h2>
+            <button class="btn btn-cta text-white" id="btn-csv">Exporter les données</button>
+            <table id="custom-datatable"></table>
+        </section>
+    {% endif %}
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="subscriptionModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                {{ form_start(form) }}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Formulaire d'inscription</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="subscriber ps-2 pe-2"
+                         data-index="{{ form.subscribers|length > 0 ? form.subscribers|last.vars.name + 1 : 0 }}"
+                         data-prototype="{{ form_widget(form.subscribers.vars.prototype)|e('html_attr') }}"
+                    >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded"
+                            data-collection-holder-class="subscriber"
+                            id="add_subscriber_btn">Ajouter un
+                        participant
+                    </button>
+                    {{ form_row(form.submit, { 'attr' :
+                        {
+                            'id' : 'subscriptionBtn'
+                        }
+                    } ) }}
+                </div>
+                {{ form_widget(form._token) }}
+                {{ form_end(form,{'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <script>
+            let data = {{ subscribers|raw }}
+            const title = '{{ booking.title|raw }}'
+        </script>
+    {% endif %}
+    {{ encore_entry_script_tags('eventSubscription') }}
+    {{ encore_entry_script_tags('subscriberListing') }}
+{% endblock %}

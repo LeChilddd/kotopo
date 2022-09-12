@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Booking index{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('eventListing') }}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        const data = {{ bookings|raw }};
+    </script>
+    {{ encore_entry_script_tags('eventListing') }}
+{% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Liste des événements</h1>
+
+    <table id="custom-datatable"></table>
+
+    <div class="mb-2 mt-2">
+        <a class="btn btn-cta" href="{{ path('app_booking_new') }}">Ajouter un événements</a>
+    </div>
+{% endblock %}
+

@@ -33,9 +33,11 @@ nav{
 
 }
 
+.btn-cta:hover {
+  color: black;
+}
 
 a:hover {
-  font-weight: bold;
   color: $cta;
 }
 

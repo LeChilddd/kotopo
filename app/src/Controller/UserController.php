@@ -22,8 +22,8 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $hasher
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
-    #[Route('/user_profil/{id}', name: 'app_update_profil', methods: ['GET', 'POST'])]
+    #[Security("user === choosenUser")]
+    #[Route('/user/{id}/update', name: 'app_update_profil', methods: ['GET', 'POST'])]
     public function updateProfil(
         User $choosenUser,
         Request $request,
@@ -75,8 +75,8 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Security("is_granted('ROLE_USER') and user === choosenUser")]
-    #[Route('/user_password/{id}', 'app_update_password', methods: ['GET', 'POST'])]
+    #[Security("user === choosenUser")]
+    #[Route('/user/{id}/password', 'app_update_password', methods: ['GET', 'POST'])]
     public function updatePassword(
         User $choosenUser,
         Request $request,
