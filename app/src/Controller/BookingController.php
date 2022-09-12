@@ -78,6 +78,8 @@ class BookingController extends AbstractController
 
             $repository->add($booking, true);
 
+            $this->addFlash('success', 'Votre inscription à bien été pris en compte');
+
             return $this->redirectToRoute('app_booking_show', ['booking' => $booking->getId()], Response::HTTP_SEE_OTHER);
         }
 
