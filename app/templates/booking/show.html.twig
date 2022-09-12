@@ -8,6 +8,11 @@
 
 {% block body %}
     <section class="m-3 min-height-400">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
         <h1 class="text-center ms-0 mb-3">{{ booking.title }}</h1>
         <div class="card col-6 m-auto p-4 pb-0 mb-3 text-white">
             <table class="table text-white">
