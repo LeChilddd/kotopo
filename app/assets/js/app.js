@@ -14,6 +14,5 @@ global.$ = global.jQuery = $;
 const bootstrap = require("@assets/argon/js/core/bootstrap.min");
 global.bootstrap = bootstrap;
 
-require("@assets/argon/js/argon-dashboard");
 require('@assets/js/components/flatpickr');
 require('@assets/js/components/menu');

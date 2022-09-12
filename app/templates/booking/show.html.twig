@@ -49,13 +49,15 @@
                 {% endif %}
             </div>
         </div>
-        {% if is_granted('ROLE_ADMIN') %}
-            <section class="mb"></section>
-            <h2 class="text-center">Liste des inscriptions</h2>
-            <button class="btn btn-cta" id="btn-csv">Exporter les données</button>
-            <table id="custom-datatable"></table>
-        {% endif %}
     </section>
+    {% if is_granted('ROLE_ADMIN') %}
+        <section>
+            <h2 class="text-center">Liste des inscriptions</h2>
+            <button class="btn btn-cta text-white" id="btn-csv">Exporter les données</button>
+            <table id="custom-datatable"></table>
+        </section>
+    {% endif %}
+
 
     <!-- Modal -->
     <div class="modal fade" id="subscriptionModal" tabindex="-1" role="dialog" aria-labelledby="subscriptionModalLabel"
@@ -74,8 +76,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-collection-holder-class="subscriber"
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-bs-dismiss="modal">
+                        Annuler
+                    </button>
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded"
+                            data-collection-holder-class="subscriber"
                             id="add_subscriber_btn">Ajouter un
                         participant
                     </button>
