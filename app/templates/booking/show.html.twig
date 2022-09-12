@@ -28,8 +28,8 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{ booking.beginAt ? booking.beginAt|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ booking.endAt ? booking.endAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.beginDate ? booking.beginDate|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>{{ booking.endDate ? booking.endDate|date('Y-m-d H:i:s') : '' }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -50,6 +50,7 @@
                             Éditer
                         </a>
                         {{ include('booking/_delete_form.html.twig') }}
+                        {{ include('booking/_delete_all_form.html.twig') }}
                     </div>
                 {% endif %}
             </div>

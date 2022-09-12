@@ -27,8 +27,8 @@ class BookingEditor
     {
 
         try {
-            $booking->setBeginAt(new \DateTime($content['beginAt']))
-                    ->setEndAt(new \DateTime($content['endAt']));
+            $booking->setBeginDate(new \DateTime($content['beginAt']))
+                    ->setEndDate(new \DateTime($content['endAt']));
             $this->em->persist($booking);
             $this->em->flush();
 
@@ -43,7 +43,7 @@ class BookingEditor
             );
         } catch (\Throwable $exception) {
             $id = $booking->getId();
-            $this->logger->error("An error occurred during user $id profile update");
+            $this->logger->error("An error occurred during booking $id update");
             $this->logger->debug($exception->getTraceAsString());
             $result = ApiMessages::makeDefaultErrorContent();
         }

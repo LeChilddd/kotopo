@@ -3,14 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
-use App\Entity\Subscriber;
 use App\Form\BookingSubscriptionType;
 use App\Form\BookingType;
 use App\Repository\SubscriberRepository;
-use App\Service\Booking\BookingDto;
 use App\Services\Booking\BookingEditor;
 use App\Repository\BookingRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use App\Services\Booking\BookingRecurrencePersister;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -30,10 +28,9 @@ class BookingController extends AbstractController
         foreach ($bookings as $booking) {
             $bookingsList[] = [
                 "idBooking" => $booking->getId(),
-                "beginAt" => $booking->getBeginAt()->format('Y-m-d H:i'),
-                "endAt" => $booking->getEndAt()->format('Y-m-d H:i'),
+                "beginDate" => $booking->getBeginDate()->format('Y-m-d H:i'),
+                "endDate" => $booking->getEndDate()->format('Y-m-d H:i'),
                 "title" => $booking->getTitle(),
-
             ];
         }
         return $this->render('booking/index.html.twig', [
@@ -42,17 +39,17 @@ class BookingController extends AbstractController
     }
 
     #[Route('/new', name: 'app_booking_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, BookingRepository $bookingRepository): Response
+    public function new(Request $request, BookingRepository $bookingRepository, BookingRecurrencePersister $recurrencePersister): Response
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            ($recurrenceEnd = $form->get('length')->getData())
-            && dd(floor($booking->getBeginAt()->diff($recurrenceEnd)->days/7));
 
-            $bookingRepository->add($booking, true);
+            $bookingDuration = $booking->getBeginDate()->diff($booking->getEndDate());
+
+            $recurrencePersister->persistBookingDates($booking, $bookingDuration);
 
             return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -121,6 +118,18 @@ class BookingController extends AbstractController
     public function delete(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
+            $bookingRepository->remove($booking, true);
+        }
+
+        return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/delete/{id}/all', name: 'app_booking_delete_all', methods: ['GET'])]
+    public function deleteAll(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
+    {
+
+        $bookings = $bookingRepository->findBy(['title' => $booking->getTitle()]);
+        foreach ($bookings as $booking) {
             $bookingRepository->remove($booking, true);
         }
 
