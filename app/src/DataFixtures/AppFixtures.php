@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Booking;
 use App\Entity\Language;
 use App\Entity\User;
 use App\Entity\Contact;
@@ -75,6 +76,7 @@ class AppFixtures extends Fixture
             $language->setName($languages[$i]);
             $manager->persist($language);
         }
+
 
         // Contact
            for ($i = 0; $i < 5; $i++) {
