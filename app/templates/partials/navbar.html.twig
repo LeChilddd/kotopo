@@ -1,78 +1,70 @@
-<nav class="navbar navbar-main navbar-expand-lg px-0 px-4 shadow-none sticky-top" id="navbarBlur"
-     data-scroll="false">
-    <div class="container-fluid py-1 px-3">
-        <ul class="navbar-nav justify-content-start">
-            <li class="row flex-nowrap me-4">
-                <img class="navbar-brand" src="{{ asset('build/img/logo.png') }}" alt="logo de l'association">
+<nav class="navbar navbar-expand-lg bg-transparent">
+    <a class="navbar-brand" href="#"><img src="{{ asset('build/img/logo.png') }}" alt="logo de l'association"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
+    </button>
+    <div class="collapse navbar-collapse align-text-bottom" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active  m-auto me-3">
+                <a class="active-link cursor-pointer" href="{{ path('app_home') }}">
+                    Kotopo
+                </a>
             </li>
-            <li class="row flex-nowrap">
-                <div class="col-auto m-auto">
-                    <a class="active-link cursor-pointer" href="{{ path('app_home') }}">
-                        Kotopo
+            <li class="nav-item  m-auto me-3">
+                <a class="active-link  cursor-pointer" href="{{ path('app_activities') }}">
+                    Nos activités
+                </a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item dropdown m-auto me-3">
+                    <a  class="active-link cursor-pointer dropdown-toggle"
+                       id="dropdownMenuProgramme" data-bs-toggle="dropdown" aria-expanded="false">
+                        Programme
                     </a>
-                </div>
-                <div class="col-auto m-auto">
-                    <a class="active-link cursor-pointer" href="{{ path('app_activities') }}">
-                        Nos activités
-                    </a>
-                </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <ul class="col-auto m-auto me-1">
-                        <li class="nav-item dropdown d-flex align-items-center active-link col-auto m-auto">
-                            <a href="javascript:" class="active-link cursor-pointer dropdown-toggle"
-                               id="dropdownMenuProgramme" data-bs-toggle="dropdown" aria-expanded="false">
-                                Programme
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-0 px-2 py-3 me-sm-n4 z-index-3 opacity-0"
+                        aria-labelledby="dropdownMenuProgramme">
+                        <li class="mb-2">
+                            <a class="dropdown-item cursor-pointer border-radius-md"
+                               href="{{ path('app_booking_calendar') }}">
+                               Calendrier
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start mt-0 px-2 py-3 me-sm-n4 z-index-3 opacity-0"
-                                aria-labelledby="dropdownMenuProgramme">
-                                <li class="mb-2">
-                                    <a class="dropdown-item cursor-pointer border-radius-md"
-                                       href="{{ path('app_booking_calendar') }}">
-                                        <span>Calendrier</span>
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a class="dropdown-item cursor-pointer border-radius-md"
-                                       href="{{ path('app_booking_index') }}">
-                                        Liste des événements
-                                    </a>
-                                </li>
-                                <li class="mb-2">
-                                    <a class="dropdown-item cursor-pointer border-radius-md"
-                                       href="{{ path('app_booking_new') }}">
-                                        Ajouts d'un événements
-                                    </a>
-                                </li>
-                            </ul>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item cursor-pointer border-radius-md"
+                               href="{{ path('app_booking_index') }}">
+                                Liste des événements
+                            </a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="dropdown-item cursor-pointer border-radius-md"
+                               href="{{ path('app_booking_new') }}">
+                                Ajouts d'un événements
+                            </a>
                         </li>
                     </ul>
-                {% else %}
-                    <div class="col-auto m-auto">
-                        <a class="active-link cursor-pointer" href="{{ path('app_booking_calendar') }}">
-                            Programme
-                        </a>
-                    </div>
-                {% endif %}
-                <div class="col-auto m-auto">
-                    <a class="active-link cursor-pointer" href="{{ path('drink_menu.pdf') }}">
-                        Carte du bar
+                </li>
+            {% else %}
+                <div class="nav-item dropdown m-auto me-3">
+                    <a class="active-link cursor-pointer" href="{{ path('app_booking_calendar') }}">
+                        Programme
                     </a>
                 </div>
+            {% endif %}
+            <li class="nav-item  m-auto me-3">
+                <a class="active-link cursor-pointer" href="{{ path('drink_menu.pdf') }}">
+                    Carte du bar
+                </a>
             </li>
-        </ul>
-        <ul class="navbar-nav justify-content-end">
-
-            <li class="col-auto m-auto me-3">
+            <li class="nav-item m-auto me-3">
                 <a class="active-link cursor-pointer" href="{{ path('app_contact') }}">
                     Contact
                 </a>
             </li>
-
             {% if app.user %}
-                <li class="nav-item dropdown d-flex align-items-center active-link col-auto m-auto">
-                    <a href="javascript:" class="nav-link dropdown-toggle text-white font-weight-bold px-0"
+                <li class="nav-item dropdown active-link m-auto me-3">
+                    <a href="#" class="nav-link dropdown-toggle text-white"
                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start px-2 py-3 me-sm-n4 opacity-0"
                         aria-labelledby="dropdownMenuButton">
@@ -105,10 +97,10 @@
                     </ul>
                 </li>
             {% else %}
-                <li class="nav-item dropdown d-flex align-items-center active-link col-auto m-auto">
-                    <a href="javascript:" class="nav-link dropdown-toggle text-white font-weight-bold px-0"
+                <li class="nav-item dropdown active-link  m-auto me-3">
+                    <a href="javascript:" class="nav-link dropdown-toggle text-white"
                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
+                        <i class="fa fa-user" aria-hidden="true"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end px-2 py-2 me-sm-n4"
                         aria-labelledby="dropdownMenuButton">
