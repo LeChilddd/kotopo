@@ -20,7 +20,6 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
             ->add('firstname', TextType::class, [
                 'attr' => [
                     'class' => 'form-control',
@@ -112,11 +111,6 @@ class UserType extends AbstractType
                 ],
                 'label' => 'Modifier mon profil'
             ])
-
-    /*        ->add('createdAt')*/
-           /* ->add('lastLogin')*/
-           /* ->add('expiredAt')*/
-         /*   ->add('membership')*/
         ;
     }
 
