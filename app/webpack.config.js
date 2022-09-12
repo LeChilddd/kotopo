@@ -27,6 +27,9 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('calendar', './assets/js/view/calendar')
     .addEntry('eventListing', './assets/js/view/eventListing')
+    .addEntry('eventSubscription', './assets/js/view/eventSubscription')
+    .addEntry('subscriberListing', './assets/js/view/subscriberListing')
+
     .copyFiles({
         from: "./assets/img/",
         to: "img/[path][name].[hash:8].[ext]",

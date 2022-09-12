@@ -1,7 +1,7 @@
 import {Grid} from "gridjs"
 require("gridjs/dist/theme/mermaid.min.css")
 
-new Grid({
+let grid = new Grid({
     pagination:true,
     sort:true,
     data: data,
@@ -24,4 +24,5 @@ new Grid({
             width : '100%',
         },
     }
-}).render(document.getElementById("custom-datatable"));
+})
+grid.render(document.getElementById("custom-datatable"));

@@ -3,7 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Booking;
+use App\Entity\Subscriber;
+use App\Form\BookingSubscriptionType;
 use App\Form\BookingType;
+use App\Repository\SubscriberRepository;
 use App\Service\Booking\BookingDto;
 use App\Services\Booking\BookingEditor;
 use App\Repository\BookingRepository;
@@ -14,7 +17,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/booking')]
 class BookingController extends AbstractController
@@ -58,11 +60,37 @@ class BookingController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{id}', name: 'app_booking_show', methods: ['GET'])]
-    public function show(Booking $booking): Response
+    #[Route('/show/{booking}', name: 'app_booking_show', methods: ['GET', 'POST'])]
+    #[ParamConverter('booking', options: ['mapping' => ['booking' => 'id']])]
+    public function show(Request $request, Booking $booking, BookingRepository $repository, SubscriberRepository $subscriberRepository): Response
     {
-        return $this->render('booking/show.html.twig', [
+        $subscriberList = [];
+        $subscribers = $subscriberRepository->findBy(['booking' => $booking]);
+
+        $form = $this->createForm(BookingSubscriptionType::class, $booking);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($subscribers as $subscriber) {
+                $booking->addSubscriber($subscriber);
+            }
+
+            $repository->add($booking, true);
+
+            return $this->redirectToRoute('app_booking_show', ['booking' => $booking->getId()], Response::HTTP_SEE_OTHER);
+        }
+
+        foreach ($subscribers as $subscriber) {
+            $subscriberList[] = [
+                "firstname" => $subscriber->getFirstname(),
+                "lastname" => $subscriber->getLastname(),
+            ];
+        }
+        return $this->renderForm('booking/show.html.twig', [
             'booking' => $booking,
+            'subscribers' => json_encode($subscriberList),
+            'form' => $form,
         ]);
     }
 
@@ -75,7 +103,7 @@ class BookingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bookingRepository->add($booking, true);
 
-            return $this->redirectToRoute('app_booking_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute("app_booking_show", ['id' => $booking->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('booking/edit.html.twig', [
@@ -87,7 +115,7 @@ class BookingController extends AbstractController
     #[Route('/delete/{id}', name: 'app_booking_delete', methods: ['POST'])]
     public function delete(Request $request, Booking $booking, BookingRepository $bookingRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$booking->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $booking->getId(), $request->request->get('_token'))) {
             $bookingRepository->remove($booking, true);
         }
 
@@ -103,10 +131,10 @@ class BookingController extends AbstractController
 
     #[Route('/api/edit/{id}', name: 'api_booking_edit', methods: ['POST', 'GET'])]
     #[ParamConverter('booking', class: Booking::class)]
-    public function bookingEdit(Request $request, Booking $booking ,BookingEditor $editor): JsonResponse
+    public function bookingEdit(Request $request, Booking $booking, BookingEditor $editor): JsonResponse
     {
-     $content = json_decode($request->getContent(), true);
-     return new JsonResponse($editor->updateUserProfile($booking, $content));
+        $content = json_decode($request->getContent(), true);
+        return new JsonResponse($editor->updateUserProfile($booking, $content));
 
     }
 

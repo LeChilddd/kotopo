@@ -28,6 +28,7 @@
         "gridjs": "^5.1.0",
         "gridjs-jquery": "^4.0.0",
         "jquery": "^3.6.0",
+        "json2csv": "^5.0.7",
         "sass": "^1.53.0",
         "sass-loader": "^13.0.2"
     }

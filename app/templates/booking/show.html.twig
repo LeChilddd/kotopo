@@ -2,6 +2,10 @@
 
 {% block title %}Booking{% endblock %}
 
+{% block stylesheets %}
+    {{ encore_entry_link_tags('eventListing') }}
+{% endblock %}
+
 {% block body %}
     <section class="m-3 min-height-400">
         <h1 class="text-center ms-0 mb-3">{{ booking.title }}</h1>
@@ -25,24 +29,32 @@
                 </tbody>
             </table>
             <!-- Button trigger modal -->
-            <div class="row d-flex justify-content-start">
+            <div class="row d-flex justify-content-between">
                 <div class="col-auto">
                     <a role="button" class="btn btn-cta" href="javascript:history.back()">
                         Retour
                     </a>
-                </div>
-                <div class="col-auto">
                     <a role="button" class="btn btn-cta" data-bs-toggle="modal" data-bs-target="#subscriptionModal">
                         Inscription pour l'événement
                     </a>
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="col-auto d-inline-flex">
+                        <a role="button" class="btn btn-info btn-rounded me-1"
+                           href="{{ path('app_booking_edit', {'id': booking.id}) }}">
+                            Éditer
+                        </a>
+                        {{ include('booking/_delete_form.html.twig') }}
+                    </div>
+                {% endif %}
             </div>
-
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('app_booking_edit', {'id': booking.id}) }}">Éditer</a>
-                {{ include('booking/_delete_form.html.twig') }}
-            {% endif %}
         </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <section class="mb"></section>
+            <h2 class="text-center">Liste des inscriptions</h2>
+            <button class="btn btn-cta" id="btn-csv">Exporter les données</button>
+            <table id="custom-datatable"></table>
+        {% endif %}
     </section>
 
     <!-- Modal -->
@@ -50,19 +62,45 @@
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
+                {{ form_start(form) }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Formulaire d'inscription</h5>
                 </div>
                 <div class="modal-body">
-                    {# {{ include('booking/inscription/_form.html.twig') }} #}
+                    <div class="subscriber ps-2 pe-2"
+                         data-index="{{ form.subscribers|length > 0 ? form.subscribers|last.vars.name + 1 : 0 }}"
+                         data-prototype="{{ form_widget(form.subscribers.vars.prototype)|e('html_attr') }}"
+                    >
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn bg-gradient-secondary" data-bs-dismiss="modal">Annuler</button>
-                    <button type="button" class="btn bg-gradient-primary" id="subscriptionBtn">Valider</button>
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn bg-gradient-secondary btn-rounded" data-collection-holder-class="subscriber"
+                            id="add_subscriber_btn">Ajouter un
+                        participant
+                    </button>
+                    {{ form_row(form.submit, { 'attr' :
+                        {
+                            'id' : 'subscriptionBtn'
+                        }
+                    } ) }}
                 </div>
+                {{ form_widget(form._token) }}
+                {{ form_end(form,{'render_rest': false}) }}
             </div>
         </div>
     </div>
 
 
+{% endblock %}
+
+{% block javascripts %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <script>
+            let data = {{ subscribers|raw }}
+            const title = '{{ booking.title|raw }}'
+        </script>
+    {% endif %}
+    {{ encore_entry_script_tags('eventSubscription') }}
+    {{ encore_entry_script_tags('subscriberListing') }}
 {% endblock %}
