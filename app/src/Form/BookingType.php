@@ -45,7 +45,7 @@ class BookingType extends AbstractType
                 'label' => 'Type de récurrence',
                 'required' => true,
                 "choices" => $this->getChoiceRecurrenceType(),
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'form-control ice-cream recurrence-type']
             ])
             ->add('recurrenceDate',DateTimeType::class, [
                 'label' => 'fin la récurrence',
@@ -54,7 +54,7 @@ class BookingType extends AbstractType
                 'html5' => false,
                 'format' => 'dd/MM/yyyy',
                 'attr' => [
-                    'class' => 'flatpickr form-control mb-3',
+                    'class' => 'flatpickr form-control mb-3 recurrence-input',
                     'autocomplete' => 'off',
                     'placeholder' => "jj/mm/aaaa"
                 ]
