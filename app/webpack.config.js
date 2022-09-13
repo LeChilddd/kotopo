@@ -29,6 +29,7 @@ Encore
     .addEntry('eventListing', './assets/js/view/eventListing')
     .addEntry('eventSubscription', './assets/js/view/eventSubscription')
     .addEntry('subscriberListing', './assets/js/view/subscriberListing')
+    .addEntry('eventForm', './assets/js/view/eventForm')
 
     .copyFiles({
         from: "./assets/img/",
