@@ -2,6 +2,8 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         qrCode: '@App\Services\QrCodeService'
+        listEvent: '@App\Services\Booking\BookingListing'
+
 
 when@test:
     twig:

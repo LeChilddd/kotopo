@@ -2,8 +2,24 @@
 
     <div class="w-auto h-auto h-100 text-center m-3">
         <p class="font-weight-bold my-3"><u>À venir :</u></p>
-        <p>Ce soir : -mon évènement-</p>
-        <p>Demain : -mon évènement-</p>
+        <div>
+            <p>Aujourd'hui :</p>
+            {% if listEvent.todayEvent is empty %}
+                <p>Aucun événement aujourd'hui</p>
+            {% else %}
+                {% for event in listEvent.todayEvent %}
+                    <p>- {{ event.title }}</p>
+                {% endfor %}
+            {% endif %}
+            <p>Demain :</p>
+            {% if listEvent.tomorrowEvent is empty %}
+                <p>Aucun événement demain</p>
+            {% else %}
+                {% for event in listEvent.tomorrowEvent %}
+                    <p>- {{ event.title }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div>
             <p class="font-weight-bold my-3"><u>Horaires d'ouverture</u></p>
             <p>du lun au jeu</p>
