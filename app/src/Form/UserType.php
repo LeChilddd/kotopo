@@ -61,7 +61,7 @@ class UserType extends AbstractType
                     'class' => 'form-label mt-4'
                 ],
                 'constraints' => [
-                    new Assert\Length(['min' => 2, 'max' => 100]),
+                    new Assert\Length(['min' => 1, 'max' => 100]),
                     new Assert\NotBlank(),
                 ]
              ])
