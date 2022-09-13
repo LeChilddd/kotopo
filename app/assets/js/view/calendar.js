@@ -36,6 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
         },
+        buttonText: {
+            today: "aujourd'hui",
+            dayGridMonth: 'mois',
+            timeGridWeek: 'semaine',
+            timeGridDay: 'jour',
+            listWeek: 'liste'
+        },
         initialView: "dayGridMonth",
         navLinks: true, // can click day/week names to navigate views
         plugins: [ interactionPlugin, dayGridPlugin, timeGridPlugin, listPlugin],
@@ -63,7 +70,7 @@ function modifyEvent(event) {
         success:function(msg){
         },
         error:function(msg){
-            alert('We are unable to process your request');
+            alert('Impossible de mettre a jour l\'événement');
         }
     });
 }
