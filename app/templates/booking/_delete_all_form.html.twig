@@ -1,0 +1,4 @@
+<form method="GET" action="{{ path('app_booking_delete_all', {'id': booking.id}) }}" onsubmit="return confirm('Are you sure you want to delete all item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ booking.id) }}">
+    <button class="btn btn-danger btn-rounded">Supprimer toutes les récurrences</button>
+</form>

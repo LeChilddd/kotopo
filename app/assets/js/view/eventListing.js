@@ -13,10 +13,10 @@ let grid = new Grid({
         id: 'title',
         name: 'Intitulé'
     }, {
-        id: 'beginAt',
+        id: 'beginDate',
         name: 'Date de début'
     }, {
-        id: 'endAt',
+        id: 'endDate',
         name: 'Date de fin'
     }],
     style: {
