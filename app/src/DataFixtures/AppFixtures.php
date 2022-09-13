@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Booking;
 use App\Entity\Language;
 use App\Entity\User;
 use App\Entity\Contact;
@@ -10,7 +11,6 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
-
     public function load(ObjectManager $manager): void
     {
         # User Admin
@@ -38,11 +38,45 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        # Languages
-        $language = new Language();
-        $language->setName('Anglais');
+        $languages = [
+            'Allemand A1',
+            'Allemand A2',
+            'Anglais B1',
+            'Anglais B2',
+            'Arabe moderne A1',
+            'Arabe moderne A2',
+            'Berbère kabyle A1',
+            'Chinois A1',
+            'Coréen A1',
+            'Coréen A1/B2',
+            'Croate A1',
+            'Croate A2/B1',
+            'Espagnol A1',
+            'Espagnol A2/B1',
+            'Espagnol B2/C1',
+            'Espéranto A1',
+            'Grec A1',
+            'Japonais A1.1',
+            'Japonais A1.2',
+            'LSF A1.1+2',
+            'LSF A1.3+4',
+            'LSF A2.1+2',
+            'Néerlandais A1',
+            'Néerlandais A2/B1',
+            'Portugais du Brésil A1',
+            'Portugais du Portugal A1',
+            'Russe A1',
+            'Russe A2',
+            'Tchèque A1.2/A2',
+            'Tchèque B1'
+        ];
 
-        $manager->persist($language);
+        for ($i = 0; $i < count($languages); $i++){
+            $language = new Language();
+            $language->setName($languages[$i]);
+            $manager->persist($language);
+        }
+
 
         // Contact
            for ($i = 0; $i < 5; $i++) {
