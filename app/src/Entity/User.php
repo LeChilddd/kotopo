@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -22,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id;
+    private ?int $id = null;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\Email]
@@ -57,22 +55,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 1, max: 25)]
     private string $gender;
 
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Membership::class, cascade: ['persist', 'remove'])]
-    private ?Membership $membership;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserLanguageLevel::class)]
-    private Collection $userLanguageLevels;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Invoice::class)]
-    private Collection $invoices;
-
-    #[ORM\OneToMany(mappedBy: 'userTeacher', targetEntity: Session::class)]
-    private Collection $sessions;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserSession::class)]
-    private Collection $userSessions;
-
-
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     #[Assert\NotNull]
     private ?DateTimeImmutable $createdAt = null;
@@ -87,10 +69,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->userLanguageLevels = new ArrayCollection();
-        $this->invoices = new ArrayCollection();
-        $this->sessions = new ArrayCollection();
-        $this->userSessions = new ArrayCollection();
         $this->setRoles(["ROLE_USER"]);
         $this->createdAt = new \DateTimeImmutable();
         $this->lastLogin = new \DateTime();
@@ -211,143 +189,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setGender(string $gender): self
     {
         $this->gender = $gender;
-
-        return $this;
-    }
-
-    public function getMembership(): ?Membership
-    {
-        return $this->membership;
-    }
-
-    public function setMembership(Membership $membership): self
-    {
-        // set the owning side of the relation if necessary
-        if ($membership->getUser() !== $this) {
-            $membership->setUser($this);
-        }
-
-        $this->membership = $membership;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserLanguageLevel>
-     */
-    public function getUserLanguageLevels(): Collection
-    {
-        return $this->userLanguageLevels;
-    }
-
-    public function addUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
-    {
-        if (!$this->userLanguageLevels->contains($userLanguageLevel)) {
-            $this->userLanguageLevels[] = $userLanguageLevel;
-            $userLanguageLevel->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserLanguageLevel(UserLanguageLevel $userLanguageLevel): self
-    {
-        if ($this->userLanguageLevels->removeElement($userLanguageLevel)) {
-            // set the owning side to null (unless already changed)
-            if ($userLanguageLevel->getUser() === $this) {
-                $userLanguageLevel->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Invoice>
-     */
-    public function getInvoices(): Collection
-    {
-        return $this->invoices;
-    }
-
-    public function addInvoice(Invoice $invoice): self
-    {
-        if (!$this->invoices->contains($invoice)) {
-            $this->invoices[] = $invoice;
-            $invoice->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeInvoice(Invoice $invoice): self
-    {
-        if ($this->invoices->removeElement($invoice)) {
-            // set the owning side to null (unless already changed)
-            if ($invoice->getUser() === $this) {
-                $invoice->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Session>
-     */
-    public function getSessions(): Collection
-    {
-        return $this->sessions;
-    }
-
-    public function addSession(Session $session): self
-    {
-        if (!$this->sessions->contains($session)) {
-            $this->sessions[] = $session;
-            $session->setUserTeacher($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSession(Session $session): self
-    {
-        if ($this->sessions->removeElement($session)) {
-            // set the owning side to null (unless already changed)
-            if ($session->getUserTeacher() === $this) {
-                $session->setUserTeacher(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, UserSession>
-     */
-    public function getUserSessions(): Collection
-    {
-        return $this->userSessions;
-    }
-
-    public function addUserSession(UserSession $userSession): self
-    {
-        if (!$this->userSessions->contains($userSession)) {
-            $this->userSessions[] = $userSession;
-            $userSession->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUserSession(UserSession $userSession): self
-    {
-        if ($this->userSessions->removeElement($userSession)) {
-            // set the owning side to null (unless already changed)
-            if ($userSession->getUser() === $this) {
-                $userSession->setUser(null);
-            }
-        }
 
         return $this;
     }
