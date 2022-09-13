@@ -34,7 +34,7 @@
                                         <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
                                     </div>
                                     <p class="mb-0 text-sm mx-auto ">
-                                        <a href="#" class="font-weight-bold color-cta" id="forgottenPasswordBtn" data-token="{{ csrf_token('forgotten-password') }}">
+                                        <a href="{{ path('app_forgot_password_request') }}" class="font-weight-bold color-cta" id="forgottenPasswordBtn" data-token="{{ csrf_token('forgotten-password') }}">
                                             Mot de passe oublié ?
                                         </a>
                                     </p>
