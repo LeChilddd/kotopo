@@ -43,7 +43,7 @@ class BookingRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('b')
             ->select('b')
-            ->andWhere('b.beginAt BETWEEN :from AND :to')
+            ->andWhere('b.beginDate BETWEEN :from AND :to')
             ->setParameter('from', $date)
             ->setParameter('to', $endDate)
             ->setMaxResults(3)
