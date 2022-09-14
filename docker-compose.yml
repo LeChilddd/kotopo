@@ -1,15 +1,8 @@
 version: "3.9"
 
 networks:
-  mariadb_bridge:
-    name: mariadb_bridge
   traefik_bridge:
     name: traefik_bridge
-  mailhog_bridge:
-     name: mailhog_bridge
-
-volumes:
-  db_data:
 
 services:
   php:
@@ -25,3 +18,13 @@ services:
       - MAILER_DSN=smtp://mailer:1025
       - MAIL_CONTACT_FROM=contact@kotopo.localhost
       - MAIL_CONTACT_TO=hello@kotopo.localhost
+    volumes:
+      - ./app:/var/www/kotopo
+      - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf
+    networks:
+      - traefik_bridge
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik_bridge
+      traefik.http.routers.kotopo.entrypoints: web
+      traefik.http.routers.kotopo.rule: Host(`${DOMAIN}`)
