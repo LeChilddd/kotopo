@@ -1,7 +1,8 @@
 FROM node:16-alpine as watch
 
 ENV NODE_ENV=production
-WORKDIR /srv/app/kotopo/app
+
+WORKDIR /var/www/kotopo/app
 
 ADD package.json yarn.lock webpack.config.js ./
 ADD assets ./assets
@@ -9,10 +10,6 @@ ADD assets ./assets
 RUN mkdir -p public && \
     NODE_ENV=devellopement yarn install && \
     yarn run build
-
-FROM php:8.1.5 as composer
-
-WORKDIR /srv/app/kotopo/app
 
 FROM php:8.1.5-apache as php
 
@@ -33,7 +30,7 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
 	&& docker-php-ext-install -j$(nproc) gd zip mysqli pdo pdo_mysql intl
 
-WORKDIR /srv/app/kotopo/app
+WORKDIR /var/www/kotopo/
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
    mv composer.phar /usr/local/bin/composer
@@ -45,7 +42,7 @@ RUN mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
-COPY --from=watch /srv/app/kotopo/app /srv/app/kotopo/app
+COPY --from=watch /var/www/kotopo/app /var/www/kotopo/app
 
 RUN mkdir -p var && \
     APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
