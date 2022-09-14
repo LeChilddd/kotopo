@@ -2,7 +2,7 @@ FROM node:16-alpine as watch
 
 ENV NODE_ENV=production
 
-WORKDIR /var/www/kotopo/app
+WORKDIR /app
 
 ADD package.json yarn.lock webpack.config.js ./
 ADD assets ./assets
