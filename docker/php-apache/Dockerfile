@@ -1,16 +1,3 @@
-FROM node:16-alpine as watch
-
-ENV NODE_ENV=production
-
-WORKDIR /app
-
-ADD package.json yarn.lock webpack.config.js ./
-ADD assets ./assets
-
-RUN mkdir -p public && \
-    NODE_ENV=devellopement yarn install && \
-    yarn run build
-
 FROM php:8.1.5-apache as php
 
 USER root
