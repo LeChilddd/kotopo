@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 networks:
   mariadb_bridge:
@@ -12,62 +12,6 @@ volumes:
   db_data:
 
 services:
-
-  mailer:
-      image: mailhog/mailhog:latest
-      restart: unless-stopped
-      networks:
-        - traefik_bridge
-        - mailhog_bridge
-      labels:
-          traefik.enable: true
-          traefik.http.routers.mailhog.entrypoints: web
-          traefik.http.routers.mailhog.rule: Host(`mailhog.${DOMAIN}`)
-          traefik.http.services.mailhog.loadbalancer.server.port: 8025
-          traefik.docker.network: traefik_bridge
-
-
-  traefik:
-    image: traefik:latest
-    container_name: traefik
-    restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
-    environment:
-      - TZ=Europe/Paris
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /etc/localtime:/etc/localtime:ro
-      - /etc/timezone:/etc/timezone:ro
-      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
-    networks:
-      - traefik_bridge
-    labels:
-      traefik.enable: true
-      traefik.http.routers.traefik.entrypoints: web
-      traefik.http.routers.traefik.rule: Host(`traefik.${DOMAIN}`)
-      traefik.http.routers.traefik.service: api@internal
-      traefik.docker.network: traefik_bridge
-
-  database:
-    image: mariadb:10.8.3
-    container_name: mariaDB
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
-    networks:
-      mariadb_bridge:
-        aliases:
-          - db
-          - mysql
-
   php:
     container_name: php
     build:
@@ -81,55 +25,3 @@ services:
       - MAILER_DSN=smtp://mailer:1025
       - MAIL_CONTACT_FROM=contact@kotopo.localhost
       - MAIL_CONTACT_TO=hello@kotopo.localhost
-
-    volumes:
-      - ./app:/var/www/kotopo
-      - ./docker/php-apache/apache.conf:/etc/apache2/sites-available/000-default.conf
-    depends_on:
-      - database
-    networks:
-      - traefik_bridge
-      - mariadb_bridge
-    labels:
-      traefik.enable: "true"
-      traefik.docker.network: traefik_bridge
-      traefik.http.routers.kotopo.entrypoints: web
-      traefik.http.routers.kotopo.rule: Host(`${DOMAIN}`)
-
-  watch:
-    image: node:18
-    restart: unless-stopped
-    working_dir: /var/www/kotopo
-    user: "1000"
-    command: /bin/sh -c "yarn install && yarn build && yarn run dev-server"
-    env_file: .env
-    environment:
-      - HOST=0.0.0.0
-      - PORT=3000
-      - NODE_ENV=development
-      - BASE_URL=http://${DOMAIN}
-    volumes:
-      - './app:/var/www/kotopo'
-      - '${HOME}/.cache/yarn/:/home/node/.cache/yarn'
-
-    expose:
-      - 3000
-    ports:
-      - "4508:4508"
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: unless-stopped
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOST: database
-    networks:
-      - traefik_bridge
-      - mariadb_bridge
-    labels:
-      traefik.enable: true
-      traefik.http.routers.myadmin.entrypoints: web
-      traefik.http.routers.myadmin.rule: Host(`myadmin.${DOMAIN}`)
-      traefik.http.services.myadmin.loadbalancer.server.port: 80
-      traefik.docker.network: traefik_bridge
