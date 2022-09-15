@@ -6,8 +6,8 @@ FROM node:16-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
+COPY ./package.json /app/package.json
+COPY ./yarn.lock /app/yarn.lock
 
 RUN yarn
 
