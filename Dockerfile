@@ -7,7 +7,7 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY ["package.json", "yarn.lock", "./"]
+COPY ["/app/package.json", "/app/yarn.lock", "./"]
 
 
 RUN yarn
