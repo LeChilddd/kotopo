@@ -51,6 +51,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
 
 COPY .docker/.prod /app
 COPY --from=builder /app/public/build /app/public/build
+COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 RUN mkdir -p var && \
     APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
