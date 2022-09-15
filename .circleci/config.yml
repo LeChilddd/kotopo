@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:latest
+      - image: cimg/cimg/base:2022.09
         environment:
           IMAGE_NAME: lechilddd/symfony-docker
     steps:
@@ -25,7 +25,7 @@ jobs:
             docker push ${IMAGE_NAME}
   deploy: # Étape 4
     machine:
-      enabled: true
+      image: lechilddd/symfony-docker
     steps:
       - add_ssh_keys:
           fingerprints:
