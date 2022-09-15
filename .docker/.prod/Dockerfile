@@ -6,14 +6,14 @@ FROM node:16-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-ADD package.json yarn.lock webpack.config.js ./
-ADD assets ./assets
+COPY /app/package.json /app/yarn.lock /app/webpack.config.js ./
+COPY /app/assets ./assets
 
 RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM silarhi/php-apache:8.1-symfony
+FROM php/php-apache:8.1.5
 
 # 2nd stage : build the real app container
 EXPOSE 80
