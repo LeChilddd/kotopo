@@ -1,0 +1,23 @@
+version: "3.9"
+
+networks:
+  web:
+    external: true
+
+services:
+  app:
+    container_name: app
+    image: lechilddd/symfony-docker:latest
+    restart: unless-stopped
+    env_file:
+      - app.env
+    environment:
+      - APP_MAINTENANCE
+    volumes:
+      - /app/var/logs
+    labels:
+      - "traefik.enable = true"
+      - "traefik.http.routers.kotopo.entrypoints = websecure"
+      - "traefik.http.routers.kotopo.rule = Host(`${DOMAIN}`)"
+    networks:
+      - web

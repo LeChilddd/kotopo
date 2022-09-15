@@ -40,7 +40,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
-      - ./docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+      - ./.docker/traefik/traefik.yml:/etc/traefik/traefik.yml:ro
     networks:
       - traefik_bridge
     labels:
@@ -71,7 +71,7 @@ services:
   php:
     container_name: php
     build:
-      context: ./docker/php-apache
+      context: .docker/php-apache
       target: php
     restart: unless-stopped
     environment:
