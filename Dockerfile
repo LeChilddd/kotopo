@@ -7,10 +7,11 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-ADD package.json yarn.lock ./
+COPY ["package.json", "yarn.lock", "./"]
+
 
 RUN yarn
-
+package-lock.json
 ADD webpack.config.js assets ./
 RUN yarn encore production
 
