@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
         environment:
-          IMAGE_NAME: LeChilddd/symfony-docker
+          IMAGE_NAME: lechilddd/symfony-docker
     steps:
       - checkout # Étape 1
       - setup_remote_docker
