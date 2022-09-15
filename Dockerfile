@@ -11,7 +11,7 @@ COPY ["/app/package.json", "/app/yarn.lock", "./"]
 
 
 RUN yarn
-COPY ["/app/webpack.config.js", "/app/assets", "./"]
+COPY ["/app/webpack.config.js", "/app/assets/", "./"]
 RUN yarn encore production
 ENV NODE_ENV=production
 
