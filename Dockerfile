@@ -3,7 +3,7 @@
 # 1st stage : build js & css
 FROM node:16-alpine as builder
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 WORKDIR /app
 
@@ -13,6 +13,7 @@ COPY ["/app/package.json", "/app/yarn.lock", "./"]
 RUN yarn
 COPY ["/app/webpack.config.js", "/app/assets", "./"]
 RUN yarn encore production
+ENV NODE_ENV=production
 
 RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
