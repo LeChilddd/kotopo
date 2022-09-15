@@ -13,7 +13,7 @@ COPY ["/app/package.json", "/app/yarn.lock", "./"]
 RUN yarn
 COPY ["/app/webpack.config.js", "./"]
 COPY ["/app/assets", "./assets"]
-RUN echo $(ls -a)
+
 RUN yarn encore production
 ENV NODE_ENV=production
 
@@ -21,7 +21,7 @@ RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
     yarn run build
 
-FROM php/php-apache:8.1.5
+FROM php:8.1.5-apache as php
 
 # 2nd stage : build the real app container
 EXPOSE 80
