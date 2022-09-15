@@ -4,15 +4,14 @@
 FROM node:16-alpine as builder
 
 ENV NODE_ENV=production
+
 WORKDIR /app
 
-COPY ./package.json /app/package.json
-COPY ./yarn.lock /app/yarn.lock
+COPY package.json yarn.lock ./
 
 RUN yarn
 
-COPY webpack.config.js /app/webpack.config.js
-COPY assets /app/assets
+COPY webpack.config.js assets ./
 RUN yarn encore production
 
 RUN mkdir -p public && \
@@ -46,7 +45,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     docker-php-ext-install gd exif && \
     docker-php-ext-enable imagick
 
-COPY . /app
+COPY .docker/.prod /app
 COPY --from=builder /app/public/build /app/public/build
 
 RUN mkdir -p var && \
