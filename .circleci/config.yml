@@ -16,8 +16,7 @@ jobs:
             IMAGE_TAG="1.0.${CIRCLE_BUILD_NUM}"
             APP_VERSION="${IMAGE_TAG}"
             GIT_COMMIT="${CIRCLE_SHA1:0:7}"
-            echo $(ls -a)
-            docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+            docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .docker/prod/
             
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
                 docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
