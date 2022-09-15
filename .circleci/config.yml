@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: circleci/buildpack-deps:latest
         environment:
           IMAGE_NAME: lechilddd/symfony-docker
     steps:
