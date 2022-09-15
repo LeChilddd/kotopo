@@ -1,5 +1,5 @@
 # .circleci/config.yml
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: "Deploy image to production"
           command: |
-            ssh root@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && .docker/prod/deploy.sh"
+            ssh debian@${PRODUCTION_SERVER_IP} "cd ${PRODUCTION_SERVER_PATH} && .docker/prod/deploy.sh"
 
 # On éxécute ces étapes lors d'un commit sur la branche master uniquement
 workflows:
