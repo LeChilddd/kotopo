@@ -51,7 +51,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
 
 COPY .docker/.prod /app
 COPY --from=builder /app/public/build /app/public/build
-COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
 
 COPY ["/app/composer.json", "./"]
 
