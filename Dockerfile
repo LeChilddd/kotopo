@@ -11,7 +11,7 @@ COPY ["/app/package.json", "/app/yarn.lock", "./"]
 
 
 RUN yarn
-ADD webpack.config.js assets ./
+COPY ["/app/webpack.config.js", "/app/assets", "./"]
 RUN yarn encore production
 
 RUN mkdir -p public && \
