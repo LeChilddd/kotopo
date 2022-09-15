@@ -25,7 +25,7 @@ jobs:
             docker push ${IMAGE_NAME}
   deploy: # Étape 4
     machine:
-      enabled: true
+      image: cimg/php:8.1
     steps:
       - add_ssh_keys:
           fingerprints:
