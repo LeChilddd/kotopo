@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/base
+      - image: cimg/php:8.1
         environment:
           IMAGE_NAME: lechilddd/symfony-docker
     steps:
