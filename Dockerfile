@@ -12,7 +12,7 @@ COPY ["/app/package.json", "/app/yarn.lock", "./"]
 
 RUN yarn
 COPY ["/app/webpack.config.js", "./"]
-COPY ["/app/assets", "./"]
+COPY ["/app/assets", "./assets"]
 RUN echo $(ls -a)
 RUN yarn encore production
 ENV NODE_ENV=production
