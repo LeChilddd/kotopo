@@ -6,8 +6,8 @@ FROM node:16-alpine as builder
 ENV NODE_ENV=production
 WORKDIR /app
 
-COPY /app/package.json /app/yarn.lock /app/webpack.config.js ./
-COPY /app/assets ./assets
+ADD /app/package.json /app/yarn.lock /app/webpack.config.js ./
+ADD /app/assets ./assets
 
 RUN mkdir -p public && \
     NODE_ENV=development yarn install && \
