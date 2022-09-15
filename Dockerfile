@@ -7,11 +7,11 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+ADD package.json yarn.lock ./
 
 RUN yarn
 
-COPY webpack.config.js assets ./
+ADD webpack.config.js assets ./
 RUN yarn encore production
 
 RUN mkdir -p public && \

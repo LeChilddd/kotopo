@@ -8,7 +8,8 @@ jobs:
           IMAGE_NAME: lechilddd/symfony-docker
     steps:
       - checkout # Étape 1
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.11
 
       - run: # Étapes 2 & 3
           name: "Build and push Docker image"
@@ -25,7 +26,7 @@ jobs:
             docker push ${IMAGE_NAME}
   deploy: # Étape 4
     machine:
-      image: lechilddd/symfony-docker
+      image: ubuntu-2004:202111-02
     steps:
       - add_ssh_keys:
           fingerprints:
