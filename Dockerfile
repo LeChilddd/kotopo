@@ -11,7 +11,6 @@ COPY ["package.json", "yarn.lock", "./"]
 
 
 RUN yarn
-package-lock.json
 ADD webpack.config.js assets ./
 RUN yarn encore production
 
