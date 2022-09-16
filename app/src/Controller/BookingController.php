@@ -77,7 +77,6 @@ class BookingController extends AbstractController
             }
 
             $repository->add($booking, true);
-
             $this->addFlash('success', 'Votre inscription à bien été pris en compte');
 
             return $this->redirectToRoute('app_booking_show', ['booking' => $booking->getId()], Response::HTTP_SEE_OTHER);
@@ -105,7 +104,7 @@ class BookingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bookingRepository->add($booking, true);
 
-            return $this->redirectToRoute("app_booking_show", ['id' => $booking->getId()], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute("app_booking_show", ['booking' => $booking->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('booking/edit.html.twig', [
