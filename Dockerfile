@@ -48,7 +48,7 @@ RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/i
     cd imagick && \
     phpize && ./configure && make && make install && \
     cd .. && rm -Rf imagick && \
-    docker-php-ext-install gd exif zip && \
+    docker-php-ext-install gd exif zip mysqli pdo pdo_mysql && \
     docker-php-ext-enable imagick
 
 COPY .docker/.prod /app
