@@ -60,7 +60,7 @@ COPY ["/app/", "./"]
 RUN ls -a ./bin
 
 RUN mkdir -p var && \
-    APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
+    APP_ENV=prod composer install --no-scripts --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
     APP_ENV=prod bin/console cache:warmup && \
     # We don't use DotEnv component as docker-compose will provide real environment variables
