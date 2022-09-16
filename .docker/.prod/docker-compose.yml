@@ -10,7 +10,7 @@ services:
     image: lechilddd/symfony-docker:latest
     restart: unless-stopped
     env_file:
-      - .docker/.prod/app.env
+      - ./app.env
     environment:
       - APP_MAINTENANCE
     volumes:
