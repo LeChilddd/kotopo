@@ -36,6 +36,9 @@ ENV GIT_COMMIT="${GIT_COMMIT}"
 RUN apt-get update -qq && \
     apt-get install -qy \
     libmagickwand-dev \
+    libmariadb-dev \
+    libicu-dev \
+    libjpeg62-turbo-dev \
     libpng-dev \
     libjpeg-dev \
     libzip-dev \
