@@ -39,7 +39,8 @@ RUN apt-get update -qq && \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
-    git
+    git \
+    unzip
 
 RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
     git clone https://github.com/Imagick/imagick && \
