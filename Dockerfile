@@ -57,6 +57,8 @@ COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
 
 COPY ["/app/composer.json", "/app/composer.lock", "./"]
 
+RUN ls -a ./
+
 RUN mkdir -p var && \
     APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
     APP_ENV=prod bin/console cache:clear --no-warmup && \
