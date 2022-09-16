@@ -23,7 +23,7 @@ class BookingEditor
     )
     {
     }
-    public function updateUserProfile(Booking $booking, $content): array
+    public function updateBooking(Booking $booking, $content): array
     {
 
         try {

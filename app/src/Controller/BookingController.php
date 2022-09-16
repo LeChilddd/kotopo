@@ -143,12 +143,12 @@ class BookingController extends AbstractController
     }
 
 
-    #[Route('/api/edit/{id}', name: 'api_booking_edit', methods: ['POST', 'GET'])]
+    #[Route('/api/edit/{id}', name: 'api_booking_edit', methods: ['POST'])]
     #[ParamConverter('booking', class: Booking::class)]
     public function bookingEdit(Request $request, Booking $booking, BookingEditor $editor): JsonResponse
     {
         $content = json_decode($request->getContent(), true);
-        return new JsonResponse($editor->updateUserProfile($booking, $content));
+        return new JsonResponse($editor->updateBooking($booking, $content));
 
     }
 
