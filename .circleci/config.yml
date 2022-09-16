@@ -32,7 +32,7 @@ jobs:
       - run:
           name: "Deploy image to production"
           command: |
-            ssh debian@${PROD_SERV_IP} -p 2222 "cd ${PROD_PATH} && .docker/prod/deploy.sh"
+            ssh debian@${PROD_SERV_IP} -p 2222 "cd ${PROD_PATH} && .docker/.prod/deploy.sh"
 
 # On éxécute ces étapes lors d'un commit sur la branche master uniquement
 workflows:
