@@ -19,10 +19,7 @@ jobs:
             GIT_COMMIT="${CIRCLE_SHA1:0:7}"
             ls -la .
             docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
-            
-            if [ "${CIRCLE_BRANCH}" == "main" ]; then
-                docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
-            fi
+            docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${IMAGE_NAME}:latest
             echo ${DOCKER_PWD} | docker login -u ${DOCKER_LOGIN} --password-stdin
             docker push ${IMAGE_NAME}
   deploy: # Étape 4
