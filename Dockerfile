@@ -57,7 +57,7 @@ COPY --from=composer:2.4 /usr/bin/composer /usr/bin/composer
 
 COPY ["/app/", "./"]
 
-RUN ls -a ./
+RUN ls -a ./bin
 
 RUN mkdir -p var && \
     APP_ENV=prod composer install --prefer-dist --optimize-autoloader --classmap-authoritative --no-interaction --no-ansi --no-dev && \
