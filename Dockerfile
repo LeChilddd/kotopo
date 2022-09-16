@@ -42,8 +42,8 @@ RUN apt-get update -qq && \
     libfreetype6-dev \
     git \
     unzip
-
-RUN docker-php-ext-configure zip gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
+RUN docker-php-ext-configure zip
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ && \
     git clone https://github.com/Imagick/imagick && \
     cd imagick && \
     phpize && ./configure && make && make install && \
